@@ -92,3 +92,504 @@
 .solutions-cta-decoration{right:-15%;top:10px;font-size:180px}
 .solutions-primary-btn{font-size:13px}
 .solutions-text-link{font-size:12px}}
+
+/* =========================================
+   SOLUTIONS PAGE - REDUCE EXCESSIVE SPACING
+========================================= */
+
+.solutions-page {
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden;
+}
+
+/* Hero section */
+.solutions-page .solutions-hero {
+  margin-top: 0 !important;
+  padding: 30px 0 35px !important;
+  min-height: auto !important;
+}
+
+.solutions-page .solutions-hero-grid {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  gap: 35px;
+}
+
+/* Hero visual */
+.solutions-page .solutions-hero-visual {
+  min-height: 340px !important;
+}
+
+.solutions-page .solutions-visual-card {
+  min-height: 320px !important;
+  padding: 28px !important;
+}
+
+/* Introduction section */
+.solutions-page .solutions-intro {
+  padding: 30px 0 !important;
+  margin: 0 !important;
+}
+
+.solutions-page .solutions-intro-grid {
+  gap: 35px;
+  margin: 0 auto !important;
+}
+
+/* Solutions catalog */
+.solutions-page .solutions-catalog {
+  padding: 40px 0 45px !important;
+  margin: 0 !important;
+}
+
+.solutions-page .solutions-section-heading {
+  margin-bottom: 22px !important;
+}
+
+/* Solution cards */
+.solutions-page .solutions-card-grid {
+  gap: 18px;
+}
+
+.solutions-page .solution-card {
+  padding: 22px !important;
+}
+
+.solutions-page .solution-card-description {
+  min-height: 0 !important;
+}
+
+/* Project process */
+.solutions-page .solutions-process-section {
+  padding: 40px 0 !important;
+  margin: 0 !important;
+}
+
+.solutions-page .solutions-process-heading {
+  margin-bottom: 22px !important;
+}
+
+.solutions-page .solutions-steps {
+  gap: 18px;
+}
+
+.solutions-page .solutions-steps article {
+  padding: 22px !important;
+}
+
+/* Contact section */
+.solutions-page .solutions-cta-section {
+  padding: 0 0 40px !important;
+  margin: 0 !important;
+}
+
+.solutions-page .solutions-cta-panel {
+  padding: 32px !important;
+}
+
+/* Remove unwanted default margins */
+.solutions-page h1,
+.solutions-page h2,
+.solutions-page h3,
+.solutions-page p {
+  overflow-wrap: break-word;
+}
+
+/* Tablet */
+@media (max-width: 950px) {
+  .solutions-page .solutions-hero {
+    padding: 30px 0 !important;
+  }
+
+  .solutions-page .solutions-hero-grid {
+    gap: 20px;
+  }
+
+  .solutions-page .solutions-intro {
+    padding: 30px 0 !important;
+  }
+
+  .solutions-page .solutions-catalog,
+  .solutions-page .solutions-process-section {
+    padding: 35px 0 !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+  .solutions-page .solutions-hero {
+    padding: 25px 0 !important;
+  }
+
+  .solutions-page .solutions-hero-grid {
+    gap: 15px;
+  }
+
+  .solutions-page .solutions-hero-visual {
+    min-height: 310px !important;
+  }
+
+  .solutions-page .solutions-intro {
+    padding: 25px 0 !important;
+  }
+
+  .solutions-page .solutions-catalog,
+  .solutions-page .solutions-process-section {
+    padding: 30px 0 !important;
+  }
+
+  .solutions-page .solutions-card-grid,
+  .solutions-page .solutions-steps {
+    gap: 14px;
+  }
+
+  .solutions-page .solutions-cta-section {
+    padding-bottom: 25px !important;
+  }
+
+  .solutions-page .solutions-cta-panel {
+    padding: 25px 20px !important;
+  }
+}
+/* =========================================================
+   SOLUTIONS PAGE: card animations
+   ========================================================= */
+
+/* ---------- 1. Entrance: cards flip up in order ---------- */
+.solutions-page .solutions-card-grid { perspective: 1400px; }
+
+@keyframes solFlipIn {
+  from { opacity: 0; transform: rotateX(-38deg) translateY(56px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+.solutions-page .solution-card {
+  position: relative;
+  transform-origin: 50% 0;
+  animation: solFlipIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+.solutions-page .solution-card:nth-child(1) { animation-delay: 0s; }
+.solutions-page .solution-card:nth-child(2) { animation-delay: 0.12s; }
+.solutions-page .solution-card:nth-child(3) { animation-delay: 0.24s; }
+.solutions-page .solution-card:nth-child(4) { animation-delay: 0.36s; }
+.solutions-page .solution-card:nth-child(5) { animation-delay: 0.48s; }
+.solutions-page .solution-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* where supported, flip each card as it scrolls into view */
+@supports (animation-timeline: view()) {
+  .solutions-page .solution-card {
+    animation: solFlipIn linear backwards;
+    animation-delay: 0s !important;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+
+/* ---------- 2. Running green light around the border on hover ---------- */
+@property --sol-a {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.solutions-page .solution-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 2px;
+  border-radius: 20px;
+  background: conic-gradient(from var(--sol-a), transparent 0 68%, #21764b 84%, #c9e66b 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: solSpin 2.6s linear infinite;
+  pointer-events: none;
+}
+.solutions-page .solution-card:hover::before { opacity: 1; }
+@keyframes solSpin { to { --sol-a: 360deg; } }
+
+.solutions-page .solution-card:hover {
+  transform: translateY(-8px);
+  border-color: transparent;
+  box-shadow: 0 24px 50px rgba(33, 118, 75, 0.18);
+}
+
+/* ---------- 3. Icon floats, then bounces on hover ---------- */
+@keyframes solFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.solutions-page .solution-card-icon {
+  animation: solFloat 3.4s ease-in-out infinite;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.solutions-page .solution-card:nth-child(2) .solution-card-icon { animation-delay: 0.4s; }
+.solutions-page .solution-card:nth-child(3) .solution-card-icon { animation-delay: 0.8s; }
+.solutions-page .solution-card:nth-child(4) .solution-card-icon { animation-delay: 1.2s; }
+.solutions-page .solution-card:nth-child(5) .solution-card-icon { animation-delay: 1.6s; }
+.solutions-page .solution-card:nth-child(6) .solution-card-icon { animation-delay: 2s; }
+
+@keyframes solBounce {
+  0%   { transform: scale(1) rotate(0); }
+  40%  { transform: scale(1.22) rotate(-10deg); }
+  70%  { transform: scale(0.95) rotate(4deg); }
+  100% { transform: scale(1.1) rotate(0); }
+}
+.solutions-page .solution-card:hover .solution-card-icon {
+  animation: solBounce 0.6s ease forwards;
+  background: #d8ecc4;
+  box-shadow: 0 10px 22px rgba(33, 118, 75, 0.25);
+}
+
+/* ---------- 4. Big number fills with green from the bottom ---------- */
+.solutions-page .solution-card-number {
+  color: transparent;
+  background:
+    linear-gradient(#21764b, #21764b) no-repeat left bottom / 100% 0%,
+    linear-gradient(#d8e2d1, #d8e2d1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: background-size 0.6s ease;
+}
+.solutions-page .solution-card:hover .solution-card-number {
+  background-size: 100% 100%, 100% 100%;
+}
+
+/* category tag spreads out slightly */
+.solutions-page .solution-card-tag { transition: letter-spacing 0.35s ease; }
+.solutions-page .solution-card:hover .solution-card-tag { letter-spacing: 2.2px; }
+
+/* ---------- 5. Checklist ticks in one after another ---------- */
+@keyframes solTick {
+  from { opacity: 0; transform: translateX(-14px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes solTickPop {
+  0%   { transform: scale(0) rotate(-40deg); }
+  70%  { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+.solutions-page .solution-card li {
+  animation: solTick 0.55s ease backwards;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+.solutions-page .solution-card li:nth-child(1) { animation-delay: 0.55s; }
+.solutions-page .solution-card li:nth-child(2) { animation-delay: 0.75s; }
+.solutions-page .solution-card li:nth-child(3) { animation-delay: 0.95s; }
+.solutions-page .solution-card li span {
+  display: inline-block;
+  animation: solTickPop 0.5s ease backwards;
+}
+.solutions-page .solution-card li:nth-child(1) span { animation-delay: 0.7s; }
+.solutions-page .solution-card li:nth-child(2) span { animation-delay: 0.9s; }
+.solutions-page .solution-card li:nth-child(3) span { animation-delay: 1.1s; }
+.solutions-page .solution-card:hover li { transform: translateX(5px); color: #2f5a40; }
+.solutions-page .solution-card:hover li:nth-child(2) { transition-delay: 0.05s; }
+.solutions-page .solution-card:hover li:nth-child(3) { transition-delay: 0.1s; }
+
+/* ---------- 6. "Discuss this solution": underline draws, arrow shoots out ---------- */
+.solutions-page .solution-card .solution-enquire-link {
+  background: linear-gradient(#21764b, #21764b) no-repeat 0 calc(100% - 2px) / 0 2px;
+  padding-bottom: 6px;
+  transition: background-size 0.4s ease, letter-spacing 0.3s ease;
+}
+.solutions-page .solution-card .solution-enquire-link:hover {
+  background-size: 100% 2px;
+  letter-spacing: 0.3px;
+}
+@keyframes solShoot {
+  0%   { transform: translate(0, 0);       opacity: 1; }
+  45%  { transform: translate(16px, -16px); opacity: 0; }
+  46%  { transform: translate(-16px, 16px); opacity: 0; }
+  100% { transform: translate(0, 0);       opacity: 1; }
+}
+.solutions-page .solution-enquire-link:hover span {
+  animation: solShoot 0.6s ease forwards;
+  transform: none;
+}
+
+/* ---------- 7. Heading above the cards fades up ---------- */
+@keyframes solHeadUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
+}
+.solutions-page .solutions-section-heading { animation: solHeadUp 0.7s ease both; }
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .solutions-page .solution-card,
+  .solutions-page .solution-card::before,
+  .solutions-page .solution-card-icon,
+  .solutions-page .solution-card li,
+  .solutions-page .solution-card li span,
+  .solutions-page .solutions-section-heading { animation: none !important; }
+}/* =========================================================
+   SOLUTIONS: "Your journey from grass to gas" – journey animation
+   ========================================================= */
+
+/* fixed sizes so the connector lines line up exactly */
+.solutions-page .solutions-steps {
+  gap: 24px !important;
+}
+.solutions-page .solutions-steps article {
+  position: relative;
+  padding: 26px 26px 30px !important;
+  overflow: visible;
+  background: #fff;
+  animation:
+    solStepIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) backwards,
+    solStepActive 6s ease-in-out infinite;
+}
+/* later cards go underneath the earlier ones so lines stay visible */
+.solutions-page .solutions-steps article:nth-child(1) { z-index: 3; animation-delay: 0s, 1.2s; }
+.solutions-page .solutions-steps article:nth-child(2) { z-index: 2; animation-delay: 0.2s, 3.2s; }
+.solutions-page .solutions-steps article:nth-child(3) { z-index: 1; animation-delay: 0.4s, 5.2s; }
+
+/* ---------- 1. entrance: cards rise and unblur ---------- */
+@keyframes solStepIn {
+  from { opacity: 0; translate: 0 46px; filter: blur(6px); }
+  to   { opacity: 1; translate: 0 0;    filter: blur(0); }
+}
+
+/* ---------- 2. the "active" step lights up, one after another ---------- */
+@keyframes solStepActive {
+  0%, 34%, 100% {
+    transform: translateY(0);
+    border-color: #e1e9df;
+    box-shadow: 0 4px 14px rgba(24, 51, 38, 0.04);
+  }
+  4%, 30% {
+    transform: translateY(-9px);
+    border-color: #8fcf9f;
+    box-shadow: 0 22px 44px rgba(33, 118, 75, 0.2);
+  }
+}
+
+/* progress bar along the bottom of the active card */
+.solutions-page .solutions-steps article::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 5px;
+  border-radius: 0 0 17px 17px;
+  background: linear-gradient(90deg, #21764b, #c9e66b);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: solStepBar 6s ease-in-out infinite;
+}
+.solutions-page .solutions-steps article:nth-child(1)::before { animation-delay: 1.2s; }
+.solutions-page .solutions-steps article:nth-child(2)::before { animation-delay: 3.2s; }
+.solutions-page .solutions-steps article:nth-child(3)::before { animation-delay: 5.2s; }
+@keyframes solStepBar {
+  0%        { transform: scaleX(0); opacity: 1; }
+  30%       { transform: scaleX(1); opacity: 1; }
+  34%       { transform: scaleX(1); opacity: 0; }
+  35%, 100% { transform: scaleX(0); opacity: 0; }
+}
+
+/* number circle: turns green, pulses a ring */
+.solutions-page .solutions-steps article > span {
+  position: relative;
+  animation: solStepDot 6s ease-in-out infinite;
+}
+.solutions-page .solutions-steps article:nth-child(1) > span { animation-delay: 1.2s; }
+.solutions-page .solutions-steps article:nth-child(2) > span { animation-delay: 3.2s; }
+.solutions-page .solutions-steps article:nth-child(3) > span { animation-delay: 5.2s; }
+@keyframes solStepDot {
+  0%, 34%, 100% {
+    background: #103f2c;
+    box-shadow: 0 0 0 6px #edf3e7;
+    transform: scale(1);
+  }
+  4%, 30% {
+    background: #21764b;
+    box-shadow: 0 0 0 6px #d4eccd, 0 0 0 16px rgba(33, 118, 75, 0.14);
+    transform: scale(1.14);
+  }
+}
+
+/* title gets a green underline that draws while the step is active */
+.solutions-page .solutions-steps h3 {
+  display: inline-block;
+  background: linear-gradient(#8fcf9f, #8fcf9f) no-repeat 0 100% / 0 3px;
+  padding-bottom: 4px;
+  animation: solStepUnderline 6s ease-in-out infinite;
+}
+.solutions-page .solutions-steps article:nth-child(1) h3 { animation-delay: 1.2s; }
+.solutions-page .solutions-steps article:nth-child(2) h3 { animation-delay: 3.2s; }
+.solutions-page .solutions-steps article:nth-child(3) h3 { animation-delay: 5.2s; }
+@keyframes solStepUnderline {
+  0%, 34%, 100% { background-size: 0 3px; }
+  8%, 30%       { background-size: 100% 3px; }
+}
+
+/* ---------- 3. connector lines between the circles ---------- */
+.solutions-page .solutions-steps article:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 46px;
+  left: 76px;
+  width: calc(100% - 30px);
+  height: 3px;
+  border-radius: 3px;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 38%, #c9e66b 50%, transparent 62% 100%) 0 0 / 220% 100% no-repeat,
+    #cfe3c3;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation:
+    solLineDraw 0.9s ease forwards,
+    solLineGlow 2.4s linear infinite;
+}
+.solutions-page .solutions-steps article:nth-child(1)::after { animation-delay: 0.8s, 1.7s; }
+.solutions-page .solutions-steps article:nth-child(2)::after { animation-delay: 1.1s, 2s; }
+@keyframes solLineDraw { to { transform: scaleX(1); } }
+@keyframes solLineGlow {
+  from { background-position: 120% 0, 0 0; }
+  to   { background-position: -120% 0, 0 0; }
+}
+
+/* ---------- 4. heading and note fade in ---------- */
+@keyframes solJourneyHead {
+  from { opacity: 0; translate: 0 20px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+.solutions-page .solutions-process-section .solutions-section-heading { animation: solJourneyHead 0.7s ease both; }
+.solutions-page .solutions-disclaimer { animation: solJourneyHead 0.8s ease 0.9s both; }
+
+/* ---------- phones: one column, vertical line down the left ---------- */
+@media (max-width: 650px) {
+  .solutions-page .solutions-steps { gap: 18px !important; }
+  .solutions-page .solutions-steps article:not(:last-child)::after {
+    top: 76px;
+    left: 46px;
+    width: 3px;
+    height: calc(100% - 36px);
+    background:
+      linear-gradient(180deg, transparent 0 38%, #c9e66b 50%, transparent 62% 100%) 0 0 / 100% 220% no-repeat,
+      #cfe3c3;
+    transform: scaleY(0);
+    transform-origin: top;
+    animation: solLineDrawY 0.9s ease forwards, solLineGlowY 2.4s linear infinite;
+  }
+  @keyframes solLineDrawY { to { transform: scaleY(1); } }
+  @keyframes solLineGlowY {
+    from { background-position: 0 120%, 0 0; }
+    to   { background-position: 0 -120%, 0 0; }
+  }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .solutions-page .solutions-steps article,
+  .solutions-page .solutions-steps article::before,
+  .solutions-page .solutions-steps article::after,
+  .solutions-page .solutions-steps article > span,
+  .solutions-page .solutions-steps h3 { animation: none !important; }
+  .solutions-page .solutions-steps article:not(:last-child)::after { transform: none; }
+}

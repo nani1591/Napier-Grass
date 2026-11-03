@@ -13,11 +13,13 @@ export default function About({ setCurrentPage }) {
       <div>
         <span className="eyebrow">
           <span className="eyebrow-dot" /> ABOUT OUR NAPIER GRASS FOCUS</span>
+          
           <h1>Growing a <span className="green-text">greener energy future.</span></h1>
           <p>Sri Aishwarya Lakshmi Green Energies LLP explores Napier Grass-based biogas and Compressed Bio Gas (CBG) project pathways, with attention to biomass supply, site conditions, technology and responsible operation.</p>
           <div className="hero-actions">
             <button className="btn" onClick={() => setCurrentPage('solutions')}>Explore our solutions ↗</button>
             <button className="outline-btn" onClick={() => setCurrentPage('contact')}>Get in touch</button>
+            
           </div>
           </div>
       <div className="about-visual">
@@ -31,7 +33,7 @@ export default function About({ setCurrentPage }) {
     </section>
     <section className="section">
       <div className="container about-intro"><div>
-        <span className="eyebrow">WHO WE ARE</span>
+        <span className="eyebrow">WHO WE ARE</span><span class="footer-underline"></span>
         <h2>Turning challenges into <span className="green-text">opportunities.</span></h2></div>
         <div>
           <p>Napier Grass can be considered as an energy-crop feedstock for biogas. Whether it is viable depends on local growing conditions, land and water availability, crop yield, harvesting costs and the conversion process.</p>
@@ -42,7 +44,7 @@ export default function About({ setCurrentPage }) {
     <section className="section soft">
       <div className="container">
         <div className="section-heading">
-          <div><span className="eyebrow">OUR GUIDING PRINCIPLES</span>
+          <div><span className="eyebrow">OUR GUIDING PRINCIPLES</span><span class="footer-underline"></span>
           <h2>What guides our approach</h2>
           </div>
           <p>Responsible planning begins with understanding the real needs of each project.</p></div>
@@ -56,7 +58,7 @@ export default function About({ setCurrentPage }) {
           </section>
     <section className="section">
       <div className="container about-journey"><div>
-        <span className="eyebrow">OUR FOCUS</span>
+        <span className="eyebrow">OUR FOCUS</span><span class="footer-underline"></span>
       <h2>From assessment to action.</h2>
       <p>Every project is different. The first step is to understand the waste stream, location, expected output and operating requirements before considering a suitable solution.</p></div>
       <ol>

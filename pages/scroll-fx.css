@@ -1,0 +1,270 @@
+/* ===== scroll-fx.css : entrance animations that play when you SEE the section =====
+   Imported by useScrollAnimations.js. Do not paste into home-ux.css. */
+
+.sa { --ease: cubic-bezier(0.22, 1, 0.36, 1); opacity: 0; }
+
+/* ---------- hidden start states ---------- */
+.sa-words, .sa-wipe, .sa-zoom, .sa-draw { opacity: 1; }
+.sa-eyebrow { display: inline-block; transform: translateY(14px); letter-spacing: 0.5em; }
+.sa-up      { transform: translateY(40px); }
+.sa-rise    { transform: translateY(90px) scale(0.92); }
+.sa-right   { transform: translateX(50px); }
+.sa-pop     { transform: scale(0.2) rotate(-90deg); }
+.sa-wipe    { clip-path: inset(0 0 100% 0); }
+.sa-zoom    { transform: scale(1.35); }
+.sa-draw    { transform: scaleX(0); transform-origin: left center; }
+
+/* headline words: each rises out of a mask */
+.sa-words .sa-w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0 0.04em 0.14em;
+  margin: 0 -0.04em -0.14em;
+}
+.sa-wi { display: inline-block; transform: translateY(115%); }
+
+/* accent bar next to the intro paragraph */
+.sa-bar { position: relative; border-left-color: transparent !important; }
+.sa-bar::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 3px;
+  background: #c5e04a;                       /* match your bar color */
+  box-shadow: 0 0 14px rgba(197, 224, 74, 0.7);
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+/* ---------- play states ---------- */
+.sa-in.sa-eyebrow { animation: saEyebrow 0.9s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-up      { animation: saUp 0.9s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-rise    { animation: saRise 1s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-right   { animation: saRight 0.9s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-pop     { animation: saPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d, 0ms) both; }
+.sa-in.sa-wipe    { animation: saWipe 1.1s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-zoom    { animation: saZoom 1.4s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-draw    { animation: saDraw 0.9s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-bar::before { animation: saBar 1.1s var(--ease) calc(var(--d, 0ms) - 300ms) both; }
+.sa-in .sa-wi     { animation: saWord 0.95s var(--ease) calc(var(--d, 0ms) + var(--i, 0) * 85ms) both; }
+
+@keyframes saEyebrow { from { opacity: 0; transform: translateY(14px); letter-spacing: 0.5em; } to { opacity: 1; transform: none; } }
+@keyframes saUp      { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+@keyframes saRise    { from { opacity: 0; transform: translateY(90px) scale(0.92); } to { opacity: 1; transform: none; } }
+@keyframes saRight   { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: none; } }
+@keyframes saPop     { from { opacity: 0; transform: scale(0.2) rotate(-90deg); } to { opacity: 1; transform: none; } }
+@keyframes saWipe    { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes saZoom    { from { transform: scale(1.35); } to { transform: scale(1); } }
+@keyframes saDraw    { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes saBar     { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes saWord    { from { transform: translateY(115%); } to { transform: translateY(0); } }
+
+/* ---------- hover polish (uses individual transform props, so it never fights the entrance) ---------- */
+.solutions-section .card-img { transition: scale 0.7s ease; }
+.solutions-section .card:hover .card-img { scale: 1.07; }
+.process-section .process-card .step { transition: scale 0.3s ease, box-shadow 0.3s ease; }
+.process-section .process-card:hover .step { scale: 1.1; box-shadow: 0 10px 24px rgba(23, 61, 38, 0.25); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sa, .sa-wi, .sa-bar::before { opacity: 1 !important; transform: none !important; clip-path: none !important; animation: none !important; }
+}/* ===== scroll-fx.css : entrance animations that play when you SEE the section =====
+   Imported by useScrollAnimations.js. Do not paste into home-ux.css. */
+
+:root { --ease: cubic-bezier(0.22, 1, 0.36, 1); }
+
+.sa { opacity: 0; }
+
+/* ---------- hidden start states ---------- */
+.sa-words, .sa-wipe, .sa-zoom, .sa-draw { opacity: 1; }
+.sa-eyebrow { display: inline-block; transform: translateY(14px); }
+.sa-up      { transform: translateY(40px); }
+.sa-rise    { transform: translateY(90px) scale(0.92); }
+.sa-right   { transform: translateX(50px); }
+.sa-pop     { transform: scale(0.2) rotate(-90deg); }
+.sa-wipe    { clip-path: inset(0 0 100% 0); }
+.sa-zoom    { transform: scale(1.35); }
+.sa-draw    { transform: scaleX(0); transform-origin: left center; }
+
+/* headline words: each rises out of a mask */
+.sa-words .sa-w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0 0.04em 0.14em;
+  margin: 0 -0.04em -0.14em;
+}
+.sa-wi { display: inline-block; transform: translateY(115%); }
+
+/* accent bar next to the intro paragraph */
+.sa-bar { position: relative; border-left-color: transparent !important; }
+.sa-bar::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 3px;
+  background: #c5e04a;                       /* match your bar color */
+  box-shadow: 0 0 14px rgba(197, 224, 74, 0.7);
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+/* ---------- play states ---------- */
+.sa-in.sa-eyebrow { animation: saEyebrow 0.9s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-up      { animation: saUp 0.9s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-rise    { animation: saRise 1s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-right   { animation: saRight 0.9s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-pop     { animation: saPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d, 0ms) both; }
+.sa-in.sa-wipe    { animation: saWipe 1.1s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-zoom    { animation: saZoom 1.4s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-draw    { animation: saDraw 0.9s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-bar::before { animation: saBar 1.1s var(--ease) var(--d, 0ms) both; }
+.sa-in .sa-wi     { animation: saWord 0.95s var(--ease) calc(var(--d, 0ms) + var(--i, 0) * 85ms) both; }
+
+@keyframes saEyebrow { from { opacity: 0; transform: translateY(14px); letter-spacing: 0.4em; } to { opacity: 1; transform: none; } }
+@keyframes saUp      { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+@keyframes saRise    { from { opacity: 0; transform: translateY(90px) scale(0.92); } to { opacity: 1; transform: none; } }
+@keyframes saRight   { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: none; } }
+@keyframes saPop     { from { opacity: 0; transform: scale(0.2) rotate(-90deg); } to { opacity: 1; transform: none; } }
+@keyframes saWipe    { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes saZoom    { from { transform: scale(1.35); } to { transform: scale(1); } }
+@keyframes saDraw    { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes saBar     { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes saWord    { from { transform: translateY(115%); } to { transform: translateY(0); } }
+
+/* ---------- hover polish (individual transform props: never fights the entrance) ---------- */
+.solutions-section .card-img { transition: scale 0.7s ease; }
+.solutions-section .card:hover .card-img { scale: 1.07; }
+.process-section .process-card .step { transition: scale 0.3s ease, box-shadow 0.3s ease; }
+.process-section .process-card:hover .step { scale: 1.1; box-shadow: 0 10px 24px rgba(23, 61, 38, 0.25); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sa, .sa-wi, .sa-bar::before { opacity: 1 !important; transform: none !important; clip-path: none !important; animation: none !important; }
+}/* ===== scroll-fx.css : entrance animations that play when you SEE the section =====
+   Imported by useScrollAnimations.js. Do not paste into home-ux.css. */
+
+:root { --ease: cubic-bezier(0.22, 1, 0.36, 1); }
+
+.sa { opacity: 0; }
+
+/* ---------- hidden start states ---------- */
+.sa-words, .sa-wipe, .sa-zoom, .sa-draw, .sa-wipex { opacity: 1; }
+.sa-eyebrow { display: inline-block; transform: translateY(14px); }
+.sa-up      { transform: translateY(40px); }
+.sa-rise    { transform: translateY(90px) scale(0.92); }
+.sa-right   { transform: translateX(50px); }
+.sa-pop     { transform: scale(0.2) rotate(-90deg); }
+.sa-wipe    { clip-path: inset(0 0 100% 0); }
+.sa-zoom    { transform: scale(1.35); }
+.sa-draw    { transform: scaleX(0); transform-origin: left center; }
+.sa-wipex   { clip-path: inset(-24px 100% -24px 0); }
+
+/* headline words: each rises out of a mask */
+.sa-words .sa-w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0 0.04em 0.14em;
+  margin: 0 -0.04em -0.14em;
+}
+.sa-wi { display: inline-block; transform: translateY(115%); }
+
+/* accent bar next to the intro paragraph */
+.sa-bar { position: relative; border-left-color: transparent !important; }
+.sa-bar::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 3px;
+  background: #c5e04a;                       /* match your bar color */
+  box-shadow: 0 0 14px rgba(197, 224, 74, 0.7);
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+/* ---------- process connector: travelling pulse + arrowhead (01 -> 02 -> 03) ---------- */
+.sa-wipex::before,
+.sa-wipex::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+/* glowing pulse that runs along the line */
+.sa-wipex::before {
+  left: 0;
+  top: 50%;
+  width: 38px;
+  height: 3px;
+  margin-top: -1.5px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, rgba(67, 166, 108, 0), #43a66c 60%, #9be3b2);
+  box-shadow: 0 0 10px rgba(67, 166, 108, 0.75);
+}
+/* arrowhead at the end of the line, pointing to the next step */
+.sa-wipex::after {
+  right: 2px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  margin-top: -5px;
+  border-top: 2px solid #247b4e;
+  border-right: 2px solid #247b4e;
+  transform: rotate(45deg);
+}
+
+/* ---------- play states ---------- */
+.sa-in.sa-eyebrow { animation: saEyebrow 0.9s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-up      { animation: saUp 0.9s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-rise    { animation: saRise 1s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-right   { animation: saRight 0.9s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-pop     { animation: saPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d, 0ms) both; }
+.sa-in.sa-wipe    { animation: saWipe 1.1s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-zoom    { animation: saZoom 1.4s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-draw    { animation: saDraw 0.9s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-wipex   { animation: saWipeX 0.9s var(--ease) var(--d, 0ms) both; }
+.sa-in.sa-bar::before { animation: saBar 1.1s var(--ease) var(--d, 0ms) both; }
+.sa-in .sa-wi     { animation: saWord 0.95s var(--ease) calc(var(--d, 0ms) + var(--i, 0) * 85ms) both; }
+
+/* pulse loops forever after the line has drawn; arrowhead fades in, then nudges forward */
+.sa-in.sa-wipex::before {
+  animation: saTravel 2.2s cubic-bezier(0.45, 0, 0.55, 1) calc(var(--d, 0ms) + 900ms) infinite;
+}
+.sa-in.sa-wipex::after {
+  animation:
+    saArrowIn 0.5s var(--ease) calc(var(--d, 0ms) + 700ms) both,
+    saNudge 1.4s ease-in-out calc(var(--d, 0ms) + 1300ms) infinite;
+}
+
+@keyframes saEyebrow { from { opacity: 0; transform: translateY(14px); letter-spacing: 0.4em; } to { opacity: 1; transform: none; } }
+@keyframes saUp      { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+@keyframes saRise    { from { opacity: 0; transform: translateY(90px) scale(0.92); } to { opacity: 1; transform: none; } }
+@keyframes saRight   { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: none; } }
+@keyframes saPop     { from { opacity: 0; transform: scale(0.2) rotate(-90deg); } to { opacity: 1; transform: none; } }
+@keyframes saWipe    { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes saZoom    { from { transform: scale(1.35); } to { transform: scale(1); } }
+@keyframes saDraw    { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes saBar     { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes saWord    { from { transform: translateY(115%); } to { transform: translateY(0); } }
+@keyframes saWipeX   { from { clip-path: inset(-24px 100% -24px 0); } to { clip-path: inset(-24px -24px -24px 0); } }
+@keyframes saTravel  {
+  0%   { left: 0; opacity: 0; }
+  15%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { left: calc(100% - 38px); opacity: 0; }
+}
+@keyframes saArrowIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes saNudge   { 0%, 100% { translate: 0 0; } 50% { translate: 4px 0; } }
+
+/* ---------- hover polish (individual transform props: never fights the entrance) ---------- */
+.solutions-section .card-img { transition: scale 0.7s ease; }
+.solutions-section .card:hover .card-img { scale: 1.07; }
+.process-section .process-card .step { transition: scale 0.3s ease, box-shadow 0.3s ease; }
+.process-section .process-card:hover .step { scale: 1.1; box-shadow: 0 10px 24px rgba(23, 61, 38, 0.25); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sa, .sa-wi, .sa-bar::before { opacity: 1 !important; transform: none !important; clip-path: none !important; animation: none !important; }
+  .sa-wipex::before, .sa-wipex::after { animation: none !important; }
+  .sa-wipex::before { display: none; }
+  .sa-wipex::after { opacity: 1; }
+}

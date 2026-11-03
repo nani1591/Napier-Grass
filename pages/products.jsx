@@ -100,6 +100,7 @@ export default function Products({ setCurrentPage }) {
           Our Products
           <br />
           <span>& Energy Solutions</span>
+          
         </h1>
 
         <p>
@@ -119,6 +120,7 @@ export default function Products({ setCurrentPage }) {
         <div className="np-gallery-heading">
           <div>
             <span className="np-section-kicker">EXPLORE OUR RANGE</span>
+            <span class="footer-underline"></span>
             <h2>
               Products <span>Showcase.</span>
             </h2>

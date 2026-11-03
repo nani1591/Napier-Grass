@@ -594,3 +594,70 @@
     transition: none !important;
   }
 }
+
+/* =================================
+   REMOVE EXCESSIVE SPACING - ABOUT
+================================= */
+
+/* Main About Hero */
+.about-page .about-hero {
+  padding-top: 45px !important;
+  padding-bottom: 45px !important;
+  margin-top: 0 !important;
+}
+
+/* Hero content alignment */
+.about-page .about-hero-grid {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  align-items: center;
+}
+
+/* All About page sections */
+.about-page .section {
+  padding-top: 35px !important;
+  padding-bottom: 35px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Who We Are section */
+.about-page .about-intro {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  align-items: start;
+}
+
+/* Guiding Principles */
+.about-page .section-heading {
+  margin-top: 0 !important;
+  margin-bottom: 22px !important;
+}
+
+/* Journey section */
+.about-page .about-journey {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 650px) {
+  .about-page .about-hero {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+  }
+
+  .about-page .section {
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+  }
+
+  .about-page .about-hero-grid {
+    gap: 25px;
+  }
+
+  .about-page .about-intro,
+  .about-page .about-journey {
+    gap: 20px;
+  }
+}

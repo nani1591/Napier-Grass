@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { fetchSolutions, fetchProcessSteps } from '../data/api';
 import './home-ux.css';
-const YOUTUBE_VIDEO_ID = 'yfEIrnzHnOg';
+   import useScrollAnimations from './useScrollAnimations';
+   import './scroll-fx-highlight.css';
 
 const gallery = [
   {
@@ -24,11 +25,173 @@ const gallery = [
       'https://blog.driiv.co.in/wp-content/uploads/2025/12/ChatGPT-Image-Dec-24-2025-11_12_56-AM-1024x682.jpg',
   },
 ];
+function NapierCbgProcess() {
+  const steps = [
+    { t: 'Grow & cut', d: 'Harvested every 45–60 days or so' },
+    { t: 'Chop', d: 'Shredded small for faster breakdown' },
+    { t: 'Digest', d: 'Sealed tank, no air: biogas 50–60% CH₄' },
+    { t: 'Purify', d: 'CO₂, H₂S and moisture removed' },
+    { t: 'Compress', d: 'Squeezed to about 250 bar' },
+    { t: 'Bio-CNG', d: '≥ 90% CH₄, filled into cylinders', end: true },
+  ];
+
+  return (
+    <div className="cbg-card">
+      <h3 className="cbg-title">Napier grass to compressed biogas</h3>
+
+      <svg
+        className="cbg-svg"
+        viewBox="0 76 820 200"
+        role="img"
+        aria-label="Grass, chopper, digester, purifier, compressor and cylinder connected in sequence"
+      >
+        <defs>
+          <linearGradient id="cbgGas" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#3fd6c3" />
+            <stop offset="1" stopColor="#1b8f84" />
+          </linearGradient>
+          <linearGradient id="cbgSlurry" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#5d7a1d" />
+            <stop offset="1" stopColor="#34480f" />
+          </linearGradient>
+        </defs>
+
+        <line x1="10" y1="210" x2="810" y2="210" stroke="#2a4a3a" strokeWidth="2" />
+
+        {/* 1 Grass */}
+        <g transform="translate(20 110)" strokeLinecap="round">
+          <path d="M10 100C8 70 2 50 0 30M22 100C22 62 20 38 24 8M34 100C38 70 46 50 54 28M46 100C50 80 60 68 68 60" stroke="#52d96b" strokeWidth="6" fill="none" />
+          <path d="M16 100C14 78 10 66 6 54M40 100C42 84 48 72 54 64" stroke="#2f9e4a" strokeWidth="5" fill="none" />
+        </g>
+
+        {/* 2 Chopper */}
+        <g transform="translate(125 148)">
+          <path d="M0 0H70L58 26H12Z" fill="#14271e" stroke="#7fa08d" strokeWidth="2" />
+          <rect x="6" y="26" width="52" height="36" rx="5" fill="#14271e" stroke="#7fa08d" strokeWidth="2" />
+          <circle cx="32" cy="44" r="10" fill="none" stroke="#9be564" strokeWidth="2.5" />
+          <path d="M32 34V54M22 44H42" stroke="#9be564" strokeWidth="2" />
+        </g>
+
+        {/* 3 Digester */}
+        <g transform="translate(250 90)">
+          <path d="M0 50Q0 0 90 0T180 50" fill="#103f38" stroke="#3fd6c3" strokeWidth="2.5" />
+          <rect y="50" width="180" height="70" rx="8" fill="#12251c" stroke="#7fa08d" strokeWidth="2" />
+          <path d="M2 74q22-12 44 0t44 0t44 0t42 0V118H2Z" fill="url(#cbgSlurry)" />
+          <g fill="#b6e36a">
+            <circle className="cbg-bubble" cx="40" cy="100" r="4" />
+            <circle className="cbg-bubble cbg-b2" cx="95" cy="104" r="3" />
+            <circle className="cbg-bubble" cx="140" cy="98" r="4" />
+          </g>
+          <text x="90" y="34" textAnchor="middle" fontSize="12" fill="#3fd6c3" fontFamily="ui-monospace,monospace">biogas</text>
+        </g>
+
+        {/* 4 Purifier */}
+        <g transform="translate(486 100)">
+          <rect width="46" height="110" rx="14" fill="#0e1c15" stroke="#7fa08d" strokeWidth="2" />
+          <path d="M8 30H38M8 55H38M8 80H38" stroke="#2a4a3a" strokeWidth="1.5" strokeDasharray="3 4" />
+          <circle cx="23" cy="42" r="4" fill="#3fd6c3" />
+          <circle cx="23" cy="92" r="4" fill="#ffb627" />
+        </g>
+
+        {/* 5 Compressor */}
+        <g transform="translate(580 140)">
+          <rect width="70" height="56" rx="10" fill="#14271e" stroke="#7fa08d" strokeWidth="2" />
+          <path d="M14 38L26 18L38 38L50 18L58 30" stroke="#ffb627" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+
+        {/* 6 Cylinder */}
+        <g transform="translate(715 82)">
+          <rect x="20" y="0" width="30" height="12" rx="4" fill="#9bb5a5" />
+          <rect y="10" width="70" height="120" rx="30" fill="#0d1d1a" stroke="#3fd6c3" strokeWidth="2.5" />
+          <rect x="14" y="34" width="42" height="12" rx="4" fill="url(#cbgGas)" />
+          <rect x="14" y="54" width="42" height="12" rx="4" fill="url(#cbgGas)" />
+          <rect x="14" y="74" width="42" height="12" rx="4" fill="url(#cbgGas)" />
+          <rect x="14" y="94" width="42" height="12" rx="4" fill="#2a4a46" />
+        </g>
+
+        {/* pipes + animated flow */}
+        <g fill="none" strokeLinejoin="round">
+          <path d="M95 200V176H125" stroke="#2c4438" strokeWidth="9" />
+          <path className="cbg-flow" d="M95 200V176H125" stroke="#9be564" strokeWidth="2.5" />
+          <path d="M190 178H250" stroke="#2c4438" strokeWidth="9" />
+          <path className="cbg-flow" d="M190 178H250" stroke="#9be564" strokeWidth="2.5" />
+          <path d="M430 150H486" stroke="#2c4438" strokeWidth="9" />
+          <path className="cbg-flow" d="M430 150H486" stroke="#ffb627" strokeWidth="2.5" />
+          <path d="M532 168H580" stroke="#2c4438" strokeWidth="9" />
+          <path className="cbg-flow" d="M532 168H580" stroke="#3fd6c3" strokeWidth="2.5" />
+          <path d="M650 168H715" stroke="#2c4438" strokeWidth="9" />
+          <path className="cbg-flow" d="M650 168H715" stroke="#3fd6c3" strokeWidth="2.5" />
+          <path d="M340 210V232H410" stroke="#2c4438" strokeWidth="7" />
+          <path className="cbg-flow" d="M340 210V232H410" stroke="#b6e36a" strokeWidth="2" />
+        </g>
+        <text x="418" y="236" fontSize="12" fill="#b6e36a" fontFamily="ui-monospace,monospace">digestate</text>
+        {/* labels under each stage */}
+<g
+  textAnchor="middle"
+  fontSize="13"
+  fontWeight="600"
+  fontFamily="system-ui, sans-serif"
+  fill="#163b2b"
+>
+  <text className="cbg-label" x="55"  y="262" style={{ animationDelay: '0.2s' }}>Napier grass</text>
+  <text className="cbg-label" x="160" y="262" style={{ animationDelay: '0.5s' }}>Chopper</text>
+  <text className="cbg-label" x="340" y="262" style={{ animationDelay: '0.8s' }}>Digester</text>
+  <text className="cbg-label" x="509" y="262" style={{ animationDelay: '1.1s' }}>Purifier</text>
+  <text className="cbg-label" x="615" y="262" style={{ animationDelay: '1.4s' }}>Compressor</text>
+  <text className="cbg-label" x="750" y="262" style={{ animationDelay: '1.7s' }}>Bio-CNG cylinder</text>
+</g>
+      </svg>
+
+      <ol className="cbg-steps">
+        {steps.map((s, i) => (
+          <li key={s.t} className={s.end ? 'cbg-end' : ''}>
+            <span className="cbg-n">{i + 1}</span>
+            <b>{s.t}</b>
+            {s.d}
+          </li>
+        ))}
+      </ol>
+
+      <div className="cbg-foot">
+        <span className="cbg-amber">UP TO ~250 M³ CH₄ / TON ORGANIC MATTER</span>
+        <span className="cbg-lime">DIGESTATE ⟶ ORGANIC MANURE</span>
+      </div>
+    </div>
+  );
+}
 
 export default function Home({ setCurrentPage }) {
   const [solutions, setSolutions] = useState([]);
   const [steps, setSteps] = useState([]);
+  useScrollAnimations([solutions, steps]);
+// Section entrance animations (fx-animations.css)
+useEffect(() => {
+  if (!('IntersectionObserver' in window)) return;
 
+  const root = document.documentElement;
+  root.classList.add('fx-armed');
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fx-go');
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: '0px 0px -12% 0px', threshold: 0 }
+  );
+
+  document
+    .querySelectorAll('.intro-section, .solutions-section, .process-section')
+    .forEach((el) => io.observe(el));
+
+  return () => {
+    io.disconnect();
+    root.classList.remove('fx-armed');
+  };
+}, []);
   // Load solutions and process steps
   useEffect(() => {
     fetchSolutions()
@@ -266,34 +429,23 @@ export default function Home({ setCurrentPage }) {
           </div>
 
           {/* YouTube video */}
-          <div className="hero-visual">
-            <div className="hero-image-frame hero-video-frame">
-              <iframe
-                className="hero-video"
-                src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=1&rel=0&playsinline=1`}
-                title="Biogas and renewable energy facility"
-                allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
+          {/* Napier grass to CBG process animation */}
+<div className="hero-visual">
+  <div className="hero-image-frame cbg-frame">
+    <NapierCbgProcess />
+  </div>
 
-              <div className="hero-image-caption">
-                <span className="caption-dot" />
-                CLEAN ENERGY · CIRCULAR FUTURE
-              </div>
-            </div>
+  <div className="image-orbit orbit-one" />
+  <div className="image-orbit orbit-two" />
 
-            <div className="image-orbit orbit-one" />
-            <div className="image-orbit orbit-two" />
-
-            <div className="floating-card">
-              <span className="floating-card-icon">♻</span>
-              <div>
-                <strong>From grass to gas</strong>
-                <small>A cleaner tomorrow starts today</small>
-              </div>
-            </div>
-          </div>
+  <div className="floating-card">
+    <span className="floating-card-icon">♻</span>
+    <div>
+      <strong>From grass to gas</strong>
+      <small>A cleaner tomorrow starts today</small>
+    </div>
+  </div>
+</div>
         </div>
       </section>
 
@@ -302,6 +454,7 @@ export default function Home({ setCurrentPage }) {
         <div className="container intro-grid reveal">
           <div>
             <span className="eyebrow">WHY NAPIER GRASS?</span>
+            <span class="footer-underline"></span>
             <h2>
               From green fields
               <br />
@@ -324,6 +477,7 @@ export default function Home({ setCurrentPage }) {
           <div className="section-heading reveal">
             <div>
               <span className="eyebrow">What we do</span>
+              <span class="footer-underline"></span>
               <h2>
                 Napier Grass to
                 <br />
@@ -352,7 +506,7 @@ export default function Home({ setCurrentPage }) {
                     src={item.image}
                     alt={item.title?.replace(/^[^A-Za-z]+/, '') || 'Renewable energy solution'}
                     className="card-img"
-                    loading="lazy"
+                    
                   />
                   <span className="image-number">
                     {String(index + 1).padStart(2, '0')}
@@ -404,6 +558,7 @@ export default function Home({ setCurrentPage }) {
                   {String(step.step ?? index + 1).padStart(2, '0')}
                 </span>
                 <div className="process-line" />
+                
                 <h3>{step.title}</h3>
                 <p>{step.description}</p>
               </article>
@@ -419,6 +574,7 @@ export default function Home({ setCurrentPage }) {
             <div>
               <span className="eyebrow">A greener tomorrow</span>
               <h2>A crop with energy potential.</h2>
+              <span class="footer-underline"></span>
             </div>
 
             <p>
@@ -439,7 +595,7 @@ export default function Home({ setCurrentPage }) {
                   decoding="async"
                   src={item.image}
                   alt={item.title}
-                  loading="lazy"
+                  
                 />
 
                 <div className="gallery-overlay">

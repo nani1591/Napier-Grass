@@ -1,11 +1,16 @@
-.hero h1 {
+.hero-visual{
   animation: headlineEnter 1s ease-out both;
+  margin: 0px;
 }
+
+
 
 .hero h1 span {
   display: inline-block;
   animation: greenPulse 3s ease-in-out infinite;
 }
+
+
 
 @keyframes headlineEnter {
   from {
@@ -18,6 +23,8 @@
   }
 }
 
+
+
 @keyframes greenPulse {
   0%, 100% {
     color: #24794e;
@@ -29,13 +36,19 @@
   }
 }
 
+
+
 .hero-visual {
   animation: photoEnter 1.1s ease-out both;
 }
 
+
+
 .hero-img {
   animation: photoFloat 5s ease-in-out infinite;
 }
+
+
 
 @keyframes photoEnter {
   from {
@@ -48,6 +61,8 @@
   }
 }
 
+
+
 @keyframes photoFloat {
   0%, 100% {
     transform: translateY(0) rotate(1deg);
@@ -57,10 +72,14 @@
   }
 }
 
+
+
 .hero-visual {
   view-timeline-name: --hero-photo;
   view-timeline-axis: block;
 }
+
+
 
 @supports (animation-timeline: view()) {
   .hero-img {
@@ -68,6 +87,8 @@
     animation-timeline: view();
     animation-range: entry 0% exit 100%;
   }
+
+
 
   @keyframes photoScrollZoom {
     from {
@@ -79,6 +100,8 @@
   }
 }
 
+
+
 @media (prefers-reduced-motion: reduce) {
   .hero h1,
   .hero h1 span,
@@ -87,6 +110,8 @@
     animation: none !important;
   }
 }
+
+
 
 .hero {
   position: relative;
@@ -112,6 +137,8 @@
   background-size: 40px 40px, 40px 40px, auto, auto;
 }
 
+
+
 .hero::before {
   content: "";
   position: absolute;
@@ -127,6 +154,8 @@
     0 0 0 75px rgba(37, 123, 75, 0.02);
 }
 
+
+
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
@@ -134,10 +163,14 @@
   gap: clamp(35px, 5vw, 85px);
 }
 
+
+
 .hero-copy {
   min-width: 0;
   animation: heroTextEnter 0.9s ease both;
 }
+
+
 
 .hero-badge {
   display: inline-flex;
@@ -154,6 +187,8 @@
   letter-spacing: 0.12em;
 }
 
+
+
 .hero-title {
   margin: 0 0 22px;
   color: #163b2b;
@@ -163,11 +198,15 @@
   line-height: 1.04;
 }
 
+
+
 .animated-heading {
   display: inline-block;
   color: #247b4e;
   animation: headingGlow 3.5s ease-in-out infinite;
 }
+
+
 
 @keyframes headingGlow {
   0%, 100% {
@@ -175,11 +214,15 @@
     text-shadow: 0 0 0 rgba(36, 123, 78, 0);
   }
 
+
+
   50% {
     color: #48a46b;
     text-shadow: 0 0 24px rgba(72, 164, 107, 0.18);
   }
 }
+
+
 
 .hero-subtitle {
   margin: 0 0 15px;
@@ -189,9 +232,13 @@
   letter-spacing: -0.035em;
 }
 
+
+
 .hero-subtitle span {
   color: #287c4e;
 }
+
+
 
 .hero-description {
   max-width: 560px;
@@ -201,6 +248,8 @@
   line-height: 1.95;
 }
 
+
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -208,6 +257,8 @@
   gap: 13px;
   margin-bottom: 34px;
 }
+
+
 
 .hero-actions .btn,
 .hero-actions .secondary-btn {
@@ -226,16 +277,22 @@
     background 0.3s ease;
 }
 
+
+
 .hero-actions .btn {
   background: #217b4e;
   border-color: #217b4e;
   box-shadow: 0 10px 25px rgba(33, 123, 78, 0.18);
 }
 
+
+
 .hero-actions .btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 15px 30px rgba(33, 123, 78, 0.26);
 }
+
+
 
 .hero-actions .secondary-btn {
   background: #123f2d;
@@ -243,16 +300,22 @@
   color: white;
 }
 
+
+
 .hero-actions .secondary-btn:hover {
   transform: translateY(-4px);
   background: #1c5b3c;
 }
+
+
 
 .hero-proof {
   display: flex;
   align-items: center;
   gap: 13px;
 }
+
+
 
 .hero-proof-icon {
   display: grid;
@@ -266,10 +329,14 @@
   font-size: 24px;
 }
 
+
+
 .hero-proof strong {
   color: #183d2b;
   font-size: 14px;
 }
+
+
 
 .hero-proof small {
   margin-top: 5px;
@@ -277,12 +344,16 @@
   font-size: 12px;
 }
 
+
+
 .hero-visual {
   position: relative;
   min-width: 0;
   padding: 10px 12px 36px;
   animation: heroImageEnter 1.1s ease both;
 }
+
+
 
 .hero-image-frame {
   position: relative;
@@ -295,6 +366,8 @@
     0 0 0 1px rgba(40, 112, 65, 0.08);
 }
 
+
+
 .hero-img {
   display: block;
   width: 100%;
@@ -305,9 +378,13 @@
   transition: transform 0.7s ease;
 }
 
+
+
 .hero-image-frame:hover .hero-img {
   transform: scale(1.045);
 }
+
+
 
 .hero-image-caption {
   position: absolute;
@@ -328,6 +405,8 @@
   backdrop-filter: blur(12px);
 }
 
+
+
 .caption-dot {
   width: 8px;
   height: 8px;
@@ -335,6 +414,8 @@
   background: #bce879;
   box-shadow: 0 0 12px rgba(188, 232, 121, 0.7);
 }
+
+
 
 .image-orbit {
   position: absolute;
@@ -344,12 +425,16 @@
   border-radius: 50%;
 }
 
+
+
 .orbit-one {
   top: 0;
   right: -18px;
   width: 95px;
   height: 95px;
 }
+
+
 
 .orbit-two {
   bottom: 10px;
@@ -358,6 +443,8 @@
   height: 55px;
   background: rgba(204, 232, 185, 0.3);
 }
+
+
 
 .floating-card {
   position: absolute;
@@ -376,6 +463,8 @@
   backdrop-filter: blur(12px);
 }
 
+
+
 .floating-card-icon {
   display: grid;
   width: 42px;
@@ -388,11 +477,15 @@
   font-size: 23px;
 }
 
+
+
 .floating-card strong,
 .floating-card small {
   display: block;
   white-space: nowrap;
 }
+
+
 
 .floating-card strong {
   margin-bottom: 5px;
@@ -400,10 +493,14 @@
   font-size: 12px;
 }
 
+
+
 .floating-card small {
   color: #728075;
   font-size: 10px;
 }
+
+
 
 @keyframes heroTextEnter {
   from {
@@ -411,11 +508,15 @@
     transform: translateY(28px);
   }
 
+
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
+
 
 @keyframes heroImageEnter {
   from {
@@ -423,41 +524,59 @@
     transform: translateX(35px);
   }
 
+
+
   to {
     opacity: 1;
     transform: translateX(0);
   }
 }
 
+
+
 @keyframes cardFloat {
   0%, 100% {
     transform: translateY(0);
   }
+
+
 
   50% {
     transform: translateY(-7px);
   }
 }
 
+
+
 /* TABLET */
+
+
 
 @media (max-width: 900px) {
   .hero {
     padding: 55px 0 75px;
   }
 
+
+
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 38px;
   }
 
+
+
   .hero-copy {
     max-width: 720px;
   }
 
+
+
   .hero-title {
     font-size: clamp(48px, 8vw, 70px);
   }
+
+
 
   .hero-visual {
     width: 100%;
@@ -465,14 +584,20 @@
     margin-inline: auto;
   }
 
+
+
   .hero-img {
     height: clamp(340px, 58vw, 460px);
   }
+
+
 
   .floating-card {
     right: 0;
   }
 }
+
+
 
 @media (max-width: 600px) {
   .hero {
@@ -480,9 +605,13 @@
     background-size: 28px 28px, 28px 28px, auto, auto;
   }
 
+
+
   .hero-grid {
     gap: 30px;
   }
+
+
 
   .hero-badge {
     padding: 10px 13px;
@@ -491,25 +620,35 @@
     letter-spacing: 0.07em;
   }
 
+
+
   .hero-title {
     font-size: clamp(39px, 11vw, 55px);
     line-height: 1.08;
   }
+
+
 
   .hero-subtitle {
     font-size: 19px;
     line-height: 1.5;
   }
 
+
+
   .hero-description {
     font-size: 14px;
     line-height: 1.8;
   }
 
+
+
   .hero-actions {
     align-items: stretch;
     flex-direction: column;
   }
+
+
 
   .hero-actions .btn,
   .hero-actions .secondary-btn {
@@ -517,18 +656,26 @@
     min-height: 52px;
   }
 
+
+
   .hero-visual {
     padding: 5px 5px 30px;
   }
+
+
 
   .hero-image-frame {
     border-radius: 23px;
   }
 
+
+
   .hero-img {
     height: 290px;
     border-radius: 21px;
   }
+
+
 
   .hero-image-caption {
     right: 10px;
@@ -538,24 +685,34 @@
     font-size: 8px;
   }
 
+
+
   .floating-card {
     right: 0;
     padding: 11px 13px;
     gap: 9px;
   }
 
+
+
   .floating-card-icon {
     width: 35px;
     height: 35px;
   }
 
+
+
   .floating-card strong {
     font-size: 11px;
   }
 
+
+
   .floating-card small {
     font-size: 9px;
   }
+
+
 
   .orbit-one {
     right: -3px;
@@ -563,6 +720,8 @@
     height: 65px;
   }
 }
+
+
 
 @media (prefers-reduced-motion: reduce) {
   .hero-copy,
@@ -572,10 +731,14 @@
     animation: none !important;
   }
 
+
+
   .hero-img {
     transition: none;
   }
 }
+
+
 
 @supports (animation-timeline: view()) {
   .hero-image-frame {
@@ -584,10 +747,14 @@
     animation-range: entry 0% exit 100%;
   }
 
+
+
   @keyframes heroScrollReveal {
     from {
       transform: translateY(25px) scale(0.96);
     }
+
+
 
     to {
       transform: translateY(-10px) scale(1.015);
@@ -598,14 +765,20 @@
   background: #e8f4e8 !important;
 }
 
+
+
 .hero-title {
   color: #123f2d !important;
   font-size: clamp(48px, 5vw, 76px) !important;
 }
 
+
+
 .animated-heading {
   color: #27814f !important;
 }
+
+
 
 .hero-image-frame {
   border-radius: 32px !important;
@@ -618,6 +791,8 @@
   color: #163b2b;
 }
 
+
+
 .hero .hero-title .animated-heading {
   color: #247b4e;
   animation: headingGlow 3.5s ease-in-out infinite;
@@ -627,11 +802,15 @@
   animation: blinkGreen 1.2s ease-in-out infinite;
 }
 
+
+
 @keyframes blinkGreen {
   0%, 100% {
     opacity: 1;
     color: #247b4e;
   }
+
+
 
   50% {
     opacity: 0.25;
@@ -642,10 +821,14 @@
   animation: headlineBlink 1.5s ease-in-out infinite;
 }
 
+
+
 @keyframes headlineBlink {
   0%, 100% {
     opacity: 1;
   }
+
+
 
   50% {
     opacity: 0.3;
@@ -654,12 +837,15 @@
 .hero-video-frame {
   position: relative;
   width: 100%;
+  margin-top: 0px;
   overflow: hidden;
   border-radius: 24px;
   aspect-ratio: 4 / 3;
   background: #123d2b;
   isolation: isolate;
 }
+
+
 
 .hero-video {
   display: block;
@@ -672,6 +858,8 @@
   object-fit: cover;
 }
 
+
+
 .hero-video-frame .hero-image-caption {
   position: absolute;
   z-index: 2;
@@ -680,6 +868,8 @@
   bottom: 0;
   pointer-events: none;
 }
+
+
 
 .home-company-logo {
   display: block;
@@ -690,17 +880,23 @@
   margin-bottom: 20px;
 }
 
+
+
 @media (max-width: 768px) {
   .hero-video-frame {
     aspect-ratio: 16 / 11;
     border-radius: 18px;
   }
 
+
+
   .home-company-logo {
     width: min(180px, 70%);
     margin-bottom: 16px;
   }
 }
+
+
 
 /* Napier Grass process diagram */
 .hero-process-frame {
@@ -711,6 +907,8 @@
   border-radius: 32px;
   background: #fff;
 }
+
+
 
 .hero-process-frame .hero-process-image {
   display: block;
@@ -725,14 +923,20 @@
   transform: none;
 }
 
+
+
 .hero-process-frame:hover .hero-process-image {
   transform: none;
 }
+
+
 
 .hero-process-frame .hero-image-caption {
   z-index: 2;
   pointer-events: none;
 }
+
+
 
 @media (max-width: 600px) {
   .hero-process-frame {
@@ -749,6 +953,8 @@
     ),
     url("/napier-grass-bg.webp");
 
+
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -760,6 +966,8 @@
   background-repeat: no-repeat;
   background-attachment: scroll;
 }
+
+
 
 /* Napier Grass photo background for the Home hero */
 .hero {
@@ -777,9 +985,13 @@
   background-color: #edf5e8 !important;
 }
 
+
+
 .hero::before {
   border-color: rgba(37, 123, 75, 0.18);
 }
+
+
 
 @media (max-width: 900px) {
   .hero {
@@ -795,11 +1007,15 @@
   }
 }
 
+
+
 .hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
 }
+
+
 
 .hero-particles {
   position: absolute;
@@ -809,12 +1025,367 @@
   pointer-events: none;
 }
 
+
+
 .hero-particles canvas {
   width: 100%;
   height: 100%;
 }
 
+
+
 .hero > .hero-grid {
   position: relative;
   z-index: 1;
+}
+/* First section */
+.why-napier-section {
+  padding-bottom: 40px;
+  margin-bottom: 0;
+}
+
+
+
+/* Second section */
+.what-we-do-section {
+  padding-top: 40px;
+  margin-top: 0;
+}
+/* Reduce the gap between WHY NAPIER GRASS and WHAT WE DO */
+.intro-section {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
+
+.solutions-section {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+
+
+/* Keep a small, clean gap between the two sections */
+.intro-section .intro-grid {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+
+
+.solutions-section .section-heading {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+
+
+
+.intro-section {
+  padding-bottom: 20px !important;
+}
+
+
+
+.solutions-section {
+  padding-top: 20px !important;
+}
+/* Reduce vertical spacing in the hero heading */
+.hero .hero-title {
+  line-height: 0.9 !important;
+  margin-bottom: 18px;
+} /* Move the hero video upward */
+.hero-visual {
+  padding-top: 0 !important;
+  margin-top: -40px;
+}
+/* ===== Napier grass → CBG process animation (light theme, replaces YouTube) ===== */
+.cbg-frame {
+  background: rgba(255, 255, 255, 0.55) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  aspect-ratio: auto !important;
+  border: 1px solid rgba(40, 112, 65, 0.18) !important;
+}
+
+.cbg-card {
+  --cbg-line: rgba(40, 112, 65, 0.18);
+  --cbg-text: #163b2b;
+  --cbg-muted: #5f7566;
+  --cbg-lime: #3f9a3a;
+  --cbg-amber: #b87400;
+  --cbg-teal: #1f9d8a;
+  padding: 22px 20px 16px;
+  color: var(--cbg-text);
+  background: transparent;
+}
+
+.cbg-title {
+  margin: 0 0 10px;
+  color: var(--cbg-text);
+  font-size: clamp(16px, 1.7vw, 20px);
+  letter-spacing: 0;
+}
+
+.cbg-svg { display: block; width: 100%; height: auto; }
+
+.cbg-flow { stroke-dasharray: 6 8; animation: cbgDash 1.3s linear infinite; }
+.cbg-bubble { animation: cbgRise 3s ease-in infinite; }
+.cbg-b2 { animation-delay: 1s; }
+
+@keyframes cbgDash { to { stroke-dashoffset: -28; } }
+@keyframes cbgRise {
+  0%   { transform: translateY(0);     opacity: 0.9; }
+  100% { transform: translateY(-22px); opacity: 0; }
+}
+
+.cbg-steps {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.cbg-steps li {
+  padding: 9px;
+  border: 1px solid var(--cbg-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--cbg-muted);
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+.cbg-steps li b {
+  display: block;
+  margin: 3px 0;
+  color: var(--cbg-text);
+  font-size: 13px;
+}
+
+.cbg-n {
+  display: inline-grid;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: #247b4e;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.cbg-steps li.cbg-end {
+  border-color: rgba(31, 157, 138, 0.45);
+  background: rgba(214, 240, 232, 0.8);
+}
+.cbg-steps li.cbg-end .cbg-n { background: var(--cbg-teal); }
+
+.cbg-foot {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 11px;
+  border-top: 1px solid var(--cbg-line);
+  font: 600 11px ui-monospace, Menlo, Consolas, monospace;
+}
+.cbg-amber { color: var(--cbg-amber); }
+.cbg-lime  { color: var(--cbg-lime); }
+
+@media (max-width: 600px) {
+  .cbg-card { padding: 16px 12px 12px; }
+  .cbg-steps { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cbg-flow, .cbg-bubble { animation: none; }
+}
+.home-page .intro-section,
+.home-page .solutions-section,
+.home-page .process-section,
+.home-page .gallery-section { background: transparent !important; }
+/* ===== Remove grass photo background ===== */
+main section.hero,
+section.hero,
+.hero,
+.home-page {
+  background-image: none !important;
+  background:
+    radial-gradient(ellipse at 78% 38%, rgba(189, 222, 170, 0.5), transparent 58%),
+    linear-gradient(120deg, #fafbf5, #e6f3e2) !important;
+}
+
+@media (max-width: 900px) {
+  main section.hero,
+  section.hero,
+  .hero,
+  .home-page {
+    background-image: none !important;
+    background:
+      radial-gradient(ellipse at 50% 80%, rgba(189, 222, 170, 0.5), transparent 60%),
+      linear-gradient(180deg, #fafbf5, #e6f3e2) !important;
+  }
+}
+/* ===== Napier → CBG animation: compact, in the blank space on the right ===== */
+
+.hero-visual {
+  position: relative !important;
+  inset: auto !important;
+  z-index: 1 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: none;
+  animation: none !important;
+  transform: none !important;
+}
+
+/* no fade needed any more */
+.hero-visual::after { display: none !important; }
+
+/* hide everything except the drawing */
+.hero-visual .image-orbit,
+.hero-visual .floating-card,
+.hero-visual .cbg-title,
+.hero-visual .cbg-steps,
+.hero-visual .cbg-foot { display: none !important; }
+
+/* remove the card look */
+.hero-visual .hero-image-frame,
+.hero-visual .cbg-frame {
+  width: 100%;
+  height: auto;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  backdrop-filter: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+.hero-visual .cbg-card {
+  width: 100%;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* compact drawing with a soft glow */
+.hero-visual .cbg-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 24px rgba(31, 157, 138, 0.3));
+}
+.hero-visual .cbg-svg .cbg-flow {
+  stroke-width: 3.5;
+  animation-duration: 1s;
+}
+
+/* no black parts: light machines with green outlines */
+.hero-visual .cbg-svg [fill="#14271e"],
+.hero-visual .cbg-svg [fill="#0e1c15"],
+.hero-visual .cbg-svg [fill="#12251c"],
+.hero-visual .cbg-svg [fill="#0d1d1a"] { fill: #ffffff; }
+.hero-visual .cbg-svg [fill="#103f38"] { fill: #cfeee4; }
+.hero-visual .cbg-svg [fill="#2a4a46"] { fill: #bfdcd3; }
+.hero-visual .cbg-svg [fill="#9bb5a5"] { fill: #7d9a8a; }
+.hero-visual .cbg-svg [stroke="#7fa08d"] { stroke: #2f7a55; }
+.hero-visual .cbg-svg [stroke="#2a4a3a"] { stroke: #9cc4aa; }
+.hero-visual .cbg-svg [stroke="#2c4438"] { stroke: #b4d3bf; }
+.hero-visual .cbg-svg [stroke="#9be564"] { stroke: #2f9a3a; }
+.hero-visual .cbg-svg [stroke="#b6e36a"] { stroke: #4f9a2a; }
+.hero-visual .cbg-svg [stroke="#3fd6c3"] { stroke: #14917f; }
+.hero-visual .cbg-svg [stroke="#ffb627"] { stroke: #e08a00; }
+.hero-visual .cbg-svg text[fill="#b6e36a"] { fill: #3f7d1f; }
+.hero-visual .cbg-svg text[fill="#3fd6c3"] { fill: #14917f; }
+
+/* phones: drawing sits under the text, full width */
+@media (max-width: 900px) {
+  .hero-visual { margin-top: 10px !important; }
+}
+/* ===== Napier → CBG animation: large and centered in the right column ===== */
+.hero-visual {
+  align-self: center !important;
+  justify-content: center !important;
+}
+
+.hero-visual .cbg-svg {
+  width: 100%;
+  max-width: none;
+  /* nudge up: the drawing sits lower than the SVG's own center */
+  transform: translateY(-14%) scale(1.3);
+  transform-origin: center;
+  filter: drop-shadow(0 14px 32px rgba(31, 157, 138, 0.3));
+}
+
+/* thicker lines so they hold up at the larger size */
+.hero-visual .cbg-svg .cbg-flow { stroke-width: 4; }
+
+/* tablet / phone: sits under the text, keep it inside the screen */
+@media (max-width: 900px) {
+  .hero-visual .cbg-svg { transform: translateY(-8%) scale(1.08); }
+}
+/* ===== FIX: Remove the space below the navbar ===== */
+
+/* Remove top spacing from the hero section */
+.hero,
+main .hero,
+main section.hero,
+.home-page .hero {
+  margin-top: 10 !important;
+  padding-top: 0 !important;
+}
+
+/* Align hero content to the top */
+.hero-grid {
+  align-items: start !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Remove extra spacing before the badge */
+.hero-copy,
+.hero-badge {
+  margin-top: 0 !important;
+}
+
+/* Keep the animation from adding unwanted spacing */
+.hero-copy {
+  transform: none;
+}
+
+/* Desktop and tablet */
+@media (min-width: 901px) {
+  .hero {
+    padding-top: 0 !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 0 !important;
+  }
+}
+.cbg-label {
+  opacity: 0;
+  animation: cbgLabelIn 0.6s ease forwards;
+}
+
+@keyframes cbgLabelIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cbg-label { opacity: 1; animation: none; }
 }

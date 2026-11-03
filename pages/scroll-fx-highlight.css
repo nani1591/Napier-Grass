@@ -1,0 +1,43 @@
+/* ===== Highlight effects for the intro + "What we do" paragraphs =====
+   Imported by useScrollAnimations.js. */
+
+/* soft tinted panel behind the intro paragraph, fading out to the right */
+.intro-section .intro-copy.sa-bar {
+  background: linear-gradient(90deg, rgba(197, 224, 74, 0.16), rgba(197, 224, 74, 0) 75%);
+  border-radius: 0 14px 14px 0;
+}
+
+/* marker-pen highlight on key phrases */
+.sa-mark {
+  color: #163b2b;
+  font-weight: 600;
+  padding: 0 0.12em;
+  margin: 0 -0.12em;
+  border-radius: 3px;
+  background-image: linear-gradient(transparent 56%, rgba(197, 224, 74, 0.7) 56%);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 0% 100%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* sweep left -> right once the paragraph has appeared */
+.sa-in .sa-mark {
+  animation: saMark 0.9s var(--ease) var(--m, 0ms) both;
+}
+
+@keyframes saMark {
+  from { background-size: 0% 100%; }
+  to   { background-size: 100% 100%; }
+}
+
+/* gentle glow on hover */
+.sa-in .sa-mark:hover {
+  background-image: linear-gradient(transparent 20%, rgba(197, 224, 74, 0.85) 20%);
+  transition: background-image 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-mark { background-size: 100% 100% !important; animation: none !important; }
+}

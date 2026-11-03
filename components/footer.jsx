@@ -80,11 +80,17 @@ export default function Footer({ setCurrentPage }) {
             </p>
           </div>
 
-          <div className="footer-contact-item">
-            <span aria-hidden="true">✉</span>
-            <button type="button" className="footer-enquiry-link" onClick={() => navigateTo("contact")}>
-              Send a project enquiry
-            </button>
+          <div className="footer-contact">
+            <div className="footer-contact-item">
+              <span aria-hidden="true">✉</span>
+              <button type="button" className="footer-enquiry-link" onClick={() => navigateTo("contact")}>
+                info@gmail.com
+              </button>
+            </div>
+            <div className="footer-contact-item">
+              <span aria-hidden="true">📞</span>
+              90000000000
+            </div>
           </div>
         </div>
 

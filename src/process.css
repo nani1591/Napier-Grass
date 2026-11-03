@@ -601,3 +601,907 @@
     padding: 12px;
   }
 }
+/* ===== Process steps: redesigned cards (all steps) ===== */
+
+.process-page .process-detail-grid {
+  gap: 44px 48px;
+}
+
+/* card */
+.process-page .process-detail-card {
+  position: relative;
+  padding: 28px 28px 30px;
+  background: linear-gradient(180deg, #ffffff, #f6fbf5);
+  border: 1px solid #d9ebdc;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(23, 59, 43, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* green accent bar on top */
+.process-page .process-detail-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  border-radius: 20px 20px 0 0;
+  background: linear-gradient(90deg, #27945b, #8fd14f, #27945b);
+  background-size: 200% 100%;
+  animation: ppBar 4s linear infinite;
+}
+@keyframes ppBar { to { background-position: 200% 0; } }
+
+.process-page .process-detail-card:hover {
+  transform: translateY(-6px);
+  border-color: #8fd1a8;
+  box-shadow: 0 20px 44px rgba(39, 148, 91, 0.2);
+}
+
+/* top row: icon badge + outlined number */
+.process-page .process-detail-top {
+  margin-bottom: 20px;
+}
+.process-page .process-detail-icon {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #eaf8ec, #d3eed9);
+  box-shadow:
+    0 0 0 6px rgba(39, 148, 91, 0.08),
+    0 10px 22px rgba(39, 148, 91, 0.22);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.process-page .process-detail-card:hover .process-detail-icon {
+  transform: scale(1.12) rotate(-6deg);
+}
+.process-page .process-detail-number {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.6px #27945b;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+.process-page .process-detail-card:hover .process-detail-number {
+  opacity: 1;
+}
+
+/* category chip */
+.process-page .process-detail-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #e7f6ea;
+  border: 1px solid #cfe9d5;
+}
+
+/* title + text */
+.process-page .process-detail-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.45rem;
+  line-height: 1.25;
+  color: #123d2b;
+}
+.process-page .process-detail-card p {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.75;
+}
+
+/* ---- flowing pipe connectors between steps (zig-zag) ---- */
+
+/* left column card -> arrow pointing right */
+.process-page .process-detail-card:nth-child(odd)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -48px;
+  width: 48px;
+  height: 20px;
+  transform: translateY(-50%);
+  background: repeating-linear-gradient(90deg, #27945b 0 8px, #bfe3c9 8px 16px);
+  background-size: 16px 100%;
+  clip-path: polygon(0 30%, 68% 30%, 68% 0, 100% 50%, 68% 100%, 68% 70%, 0 70%);
+  animation: ppFlowX 0.8s linear infinite;
+}
+/* right column card -> arrow pointing down */
+.process-page .process-detail-card:nth-child(even)::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -44px;
+  width: 20px;
+  height: 44px;
+  transform: translateX(-50%);
+  background: repeating-linear-gradient(180deg, #27945b 0 8px, #bfe3c9 8px 16px);
+  background-size: 100% 16px;
+  clip-path: polygon(30% 0, 70% 0, 70% 68%, 100% 68%, 50% 100%, 0 68%, 30% 68%);
+  animation: ppFlowY 0.8s linear infinite;
+}
+.process-page .process-detail-card:last-child::after { display: none; }
+
+@keyframes ppFlowX { to { background-position: 16px 0; } }
+@keyframes ppFlowY { to { background-position: 0 16px; } }
+
+/* ---- entrance animation ---- */
+@keyframes ppCardIn {
+  from { opacity: 0; transform: translateY(42px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+.process-page .process-detail-card {
+  animation: ppCardIn 0.7s ease backwards;
+}
+.process-page .process-detail-card:nth-child(2) { animation-delay: 0.1s; }
+.process-page .process-detail-card:nth-child(3) { animation-delay: 0.2s; }
+.process-page .process-detail-card:nth-child(4) { animation-delay: 0.3s; }
+
+/* on browsers that support it, reveal each card as it scrolls into view */
+@supports (animation-timeline: view()) {
+  .process-page .process-detail-card {
+    animation: ppCardIn linear backwards;
+    animation-delay: 0s;
+    animation-timeline: view();
+    animation-range: entry 0% entry 45%;
+  }
+}
+
+/* ---- phones: one column, arrows point down ---- */
+@media (max-width: 768px) {
+  .process-page .process-detail-grid { gap: 48px; }
+
+  .process-page .process-detail-card:nth-child(odd)::after {
+    top: auto;
+    right: auto;
+    left: 50%;
+    bottom: -44px;
+    width: 20px;
+    height: 44px;
+    transform: translateX(-50%);
+    background: repeating-linear-gradient(180deg, #27945b 0 8px, #bfe3c9 8px 16px);
+    background-size: 100% 16px;
+    clip-path: polygon(30% 0, 70% 0, 70% 68%, 100% 68%, 50% 100%, 0 68%, 30% 68%);
+    animation: ppFlowY 0.8s linear infinite;
+  }
+  .process-page .process-detail-number { font-size: 2.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-page .process-detail-card,
+  .process-page .process-detail-card::before,
+  .process-page .process-detail-card::after { animation: none !important; }
+}/* ===== Process arrows v2: 1→2 right, 2→3 elbow back, 3→4 right ... ===== */
+
+.process-page .process-detail-grid { align-items: stretch; }
+
+/* ---------- Cards 1, 3, 5: round arrow badge pointing RIGHT ---------- */
+.process-page .process-detail-card:nth-child(odd)::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: -44px;
+  left: auto;
+  bottom: auto;
+  width: 40px;
+  height: 40px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  clip-path: none;
+  background: linear-gradient(145deg, #2fae6a, #1f7f4d);
+  background-size: auto;
+  color: #fff;
+  font: 800 22px/1 Arial, sans-serif;
+  text-indent: 0;
+  z-index: 3;
+  pointer-events: none;
+  animation: ppBadgePulse 1.8s ease-out infinite;
+}
+@keyframes ppBadgePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(39,148,91,.55), 0 6px 16px rgba(39,148,91,.35); }
+  100% { box-shadow: 0 0 0 16px rgba(39,148,91,0), 0 6px 16px rgba(39,148,91,.35); }
+}
+
+/* ---------- Cards 2, 4: elbow pipe going back DOWN-LEFT to the next card ---------- */
+.process-page .process-detail-card:nth-child(even)::after {
+  content: "▼";
+  position: absolute;
+  top: 100%;
+  bottom: auto;
+  right: auto;
+  left: calc(-50% - 48px - 3px);
+  width: calc(100% + 48px + 6px);
+  height: 44px;
+  transform: none;
+  clip-path: none;
+  border-radius: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  color: #27945b;
+  font: 16px/1 Arial, sans-serif;
+  text-indent: -4px;
+  pointer-events: none;
+  z-index: 3;
+  background:
+    radial-gradient(circle, #fff 0 4px, #27945b 4.5px 10px, transparent 10.5px) 50% 50% / 22px 22px no-repeat,
+    repeating-linear-gradient(180deg, #27945b 0 6px, transparent 6px 12px) 100% 0 / 6px 50% repeat-y,
+    repeating-linear-gradient(90deg,  #27945b 0 6px, transparent 6px 12px) 12px 50% / 100% 6px repeat-x,
+    repeating-linear-gradient(180deg, #27945b 0 6px, transparent 6px 12px) 0 100% / 6px 50% repeat-y;
+  animation: ppElbow 0.7s linear infinite;
+}
+@keyframes ppElbow {
+  from { background-position: 50% 50%, 100% 0,    12px 50%, 0 100%; }
+  to   { background-position: 50% 50%, 100% 12px, 0 50%,    0 calc(100% + 12px); }
+}
+
+/* no arrow after the last card */
+.process-page .process-detail-card:last-child::after { display: none !important; }
+
+/* ---------- Phones (one column): simple pipe pointing DOWN after every card ---------- */
+@media (max-width: 768px) {
+  .process-page .process-detail-card:nth-child(odd)::after,
+  .process-page .process-detail-card:nth-child(even)::after {
+    content: "▼";
+    top: 100%;
+    bottom: auto;
+    right: auto;
+    left: 50%;
+    width: 24px;
+    height: 44px;
+    transform: translateX(-50%);
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    text-indent: 0;
+    color: #27945b;
+    font: 16px/1 Arial, sans-serif;
+    background: repeating-linear-gradient(180deg, #27945b 0 6px, transparent 6px 12px) 50% 0 / 6px calc(100% - 14px) repeat-y;
+    animation: ppDown 0.7s linear infinite;
+  }
+  @keyframes ppDown {
+    from { background-position: 50% 0; }
+    to   { background-position: 50% 12px; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-page .process-detail-card::after { animation: none !important; }
+}/* ===== Process arrows v3: clean animated flow arrows ===== */
+
+/* ---- 1→2, 3→4, 5→6 : animated arrow pointing RIGHT, in the gap ---- */
+.process-page .process-detail-card:nth-child(odd)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -48px;
+  left: auto;
+  bottom: auto;
+  width: 48px;
+  height: 36px;
+  transform: translateY(-50%);
+  display: block;
+  border-radius: 0;
+  clip-path: none;
+  box-shadow: none;
+  animation: none;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 6px rgba(39, 148, 91, 0.35));
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='36' viewBox='0 0 48 36'><line x1='2' y1='18' x2='30' y2='18' stroke='%232a9d62' stroke-width='4' stroke-linecap='round' stroke-dasharray='6 6'><animate attributeName='stroke-dashoffset' from='12' to='0' dur='0.6s' repeatCount='indefinite'/></line><path d='M28 8 L43 18 L28 28 Z' fill='%231f7f4d' stroke='%231f7f4d' stroke-width='3' stroke-linejoin='round'/></svg>") center / 100% 100% no-repeat;
+}
+
+/* ---- 2→3, 4→5 : elbow pipe from the right card back to the next row, arrowhead into the card ---- */
+.process-page .process-detail-card:nth-child(even)::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  bottom: auto;
+  right: auto;
+  left: calc(-50% - 48px - 8px);
+  width: calc(100% + 48px + 8px + 3px);
+  height: 44px;
+  transform: none;
+  display: block;
+  border-radius: 0;
+  clip-path: none;
+  box-shadow: none;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 5px rgba(39, 148, 91, 0.3));
+  background:
+    /* arrowhead pointing into the next card */
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='14' viewBox='0 0 16 14'><path d='M2 1 L14 1 L8 12 Z' fill='%231f7f4d' stroke='%231f7f4d' stroke-width='2' stroke-linejoin='round'/></svg>") 0 100% / 16px 14px no-repeat,
+    /* start node under the card */
+    radial-gradient(circle, #fff 0 2.5px, #1f7f4d 3px 6px, transparent 6.5px) calc(100% + 4px) 0 / 14px 14px no-repeat,
+    /* down from the card */
+    repeating-linear-gradient(180deg, #2a9d62 0 6px, transparent 6px 12px) 100% 0 / 6px 25px repeat-y,
+    /* run to the left */
+    repeating-linear-gradient(90deg, #2a9d62 0 6px, transparent 6px 12px) 0 19px / 100% 6px repeat-x,
+    /* down into the next card */
+    linear-gradient(#2a9d62, #2a9d62) 5px 22px / 6px 9px no-repeat;
+  animation: ppElbow3 0.8s linear infinite;
+}
+@keyframes ppElbow3 {
+  from { background-position: 0 100%, calc(100% + 4px) 0, 100% 0,    0 19px,    5px 22px; }
+  to   { background-position: 0 100%, calc(100% + 4px) 0, 100% 12px, -12px 19px, 5px 22px; }
+}
+
+/* no arrow after the last card */
+.process-page .process-detail-card:last-child::after { display: none !important; }
+
+/* ---- phones: one column, a clean arrow pointing DOWN after each card ---- */
+@media (max-width: 768px) {
+  .process-page .process-detail-card:nth-child(odd)::after,
+  .process-page .process-detail-card:nth-child(even)::after {
+    top: 100%;
+    bottom: auto;
+    right: auto;
+    left: 50%;
+    width: 36px;
+    height: 44px;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 4px 6px rgba(39, 148, 91, 0.3));
+    animation: none;
+    background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='44' viewBox='0 0 36 44'><line x1='18' y1='3' x2='18' y2='28' stroke='%232a9d62' stroke-width='4' stroke-linecap='round' stroke-dasharray='6 6'><animate attributeName='stroke-dashoffset' from='12' to='0' dur='0.6s' repeatCount='indefinite'/></line><path d='M7 27 L18 41 L29 27 Z' fill='%231f7f4d' stroke='%231f7f4d' stroke-width='3' stroke-linejoin='round'/></svg>") center / 100% 100% no-repeat;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-page .process-detail-card::after { animation: none !important; }
+}/* ===== "Good planning matters" section redesign ===== */
+
+.process-page .process-factors {
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 44px;
+  align-items: start;
+}
+
+/* ---------- left: dark green intro panel ---------- */
+.process-page .process-factors > div:first-child {
+  position: sticky;
+  top: 100px;
+  overflow: hidden;
+  padding: 38px 34px 42px;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(143, 209, 79, 0.35), transparent 45%),
+    linear-gradient(150deg, #174c35, #0f3a28);
+  box-shadow: 0 22px 50px rgba(15, 58, 40, 0.28);
+}
+
+/* decorative rings */
+.process-page .process-factors > div:first-child::before,
+.process-page .process-factors > div:first-child::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(143, 209, 79, 0.35);
+  pointer-events: none;
+}
+.process-page .process-factors > div:first-child::before {
+  width: 220px;
+  height: 220px;
+  right: -70px;
+  bottom: -70px;
+  animation: ppRing 6s ease-in-out infinite;
+}
+.process-page .process-factors > div:first-child::after {
+  width: 130px;
+  height: 130px;
+  right: -25px;
+  bottom: -25px;
+  animation: ppRing 6s ease-in-out 1.5s infinite;
+}
+@keyframes ppRing {
+  0%, 100% { transform: scale(1);   opacity: 0.6; }
+  50%      { transform: scale(1.12); opacity: 1; }
+}
+
+.process-page .process-factors > div:first-child .eyebrow {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(143, 209, 79, 0.16);
+  border: 1px solid rgba(143, 209, 79, 0.4);
+  color: #b9ef86;
+}
+.process-page .process-factors > div:first-child h2 {
+  margin: 0 0 14px;
+  color: #ffffff;
+  font-size: clamp(2rem, 3.2vw, 2.7rem);
+  line-height: 1.12;
+}
+.process-page .process-factors > div:first-child p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: #d3e8da;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* ---------- right: factor cards ---------- */
+.process-page .factor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.process-page .factor-list > div {
+  position: relative;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 20px 22px 20px 24px;
+  background: linear-gradient(180deg, #ffffff, #f6fbf5);
+  border: 1px solid #d9ebdc;
+  border-bottom: 1px solid #d9ebdc;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(23, 59, 43, 0.06);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* green accent bar on the left, grows on hover */
+.process-page .factor-list > div::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, #27945b, #8fd14f);
+  transform: scaleY(0.45);
+  transform-origin: center;
+  border-radius: 0 6px 6px 0;
+  transition: transform 0.35s ease;
+}
+
+.process-page .factor-list > div:hover {
+  transform: translateX(8px);
+  border-color: #8fd1a8;
+  box-shadow: 0 16px 36px rgba(39, 148, 91, 0.18);
+}
+.process-page .factor-list > div:hover::before { transform: scaleY(1); }
+
+/* number: round green badge, aligned the same on every row */
+.process-page .factor-list > div > span {
+  flex: 0 0 46px;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #2fae6a, #1f7f4d);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: 0 8px 18px rgba(39, 148, 91, 0.32);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.process-page .factor-list > div:hover > span {
+  transform: scale(1.12) rotate(-6deg);
+}
+
+/* title + description */
+.process-page .factor-list > div > div { min-width: 0; }
+.process-page .factor-list strong,
+.process-page .factor-list h3,
+.process-page .factor-list h4 {
+  display: block;
+  margin: 0 0 4px;
+  color: #123d2b;
+  font-size: 1.12rem;
+  line-height: 1.3;
+}
+.process-page .factor-list p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* ---------- entrance animation ---------- */
+@keyframes ppFactorIn {
+  from { opacity: 0; transform: translateX(36px); }
+  to   { opacity: 1; transform: none; }
+}
+.process-page .factor-list > div {
+  animation: ppFactorIn 0.7s ease backwards;
+}
+.process-page .factor-list > div:nth-child(2) { animation-delay: 0.1s; }
+.process-page .factor-list > div:nth-child(3) { animation-delay: 0.2s; }
+.process-page .factor-list > div:nth-child(4) { animation-delay: 0.3s; }
+
+@supports (animation-timeline: view()) {
+  .process-page .factor-list > div {
+    animation: ppFactorIn linear backwards;
+    animation-delay: 0s;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50%;
+  }
+}
+
+/* ---------- tablet / phone ---------- */
+@media (max-width: 900px) {
+  .process-page .process-factors {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .process-page .process-factors > div:first-child {
+    position: relative;
+    top: auto;
+    padding: 30px 24px 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-page .factor-list > div,
+  .process-page .process-factors > div:first-child::before,
+  .process-page .process-factors > div:first-child::after { animation: none !important; }
+}/* ===== Process stages: zig-zag timeline (6 stages) ===== */
+
+.process-page .process-detail-grid {
+  counter-reset: pstep;
+  position: relative;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 100px;
+  row-gap: 0;
+  grid-auto-rows: minmax(140px, auto);
+  align-items: start;
+  padding: 10px 0 20px;
+}
+
+/* ---- centre pipe running down the middle ---- */
+.process-page .process-detail-grid::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 30px;
+  bottom: 30px;
+  width: 6px;
+  transform: translateX(-50%);
+  border-radius: 6px;
+  background:
+    repeating-linear-gradient(180deg, #2a9d62 0 10px, transparent 10px 20px) 50% 0 / 6px 100% repeat-y;
+  filter: drop-shadow(0 0 6px rgba(42, 157, 98, 0.45));
+  animation: ppSpine 0.9s linear infinite;
+  pointer-events: none;
+}
+@keyframes ppSpine {
+  to { background-position: 50% 20px; }
+}
+
+/* ---- zig-zag placement: cards overlap by half a row ---- */
+.process-page .process-detail-card { counter-increment: pstep; z-index: 1; }
+.process-page .process-detail-card:nth-child(1) { grid-column: 1; grid-row: 1 / span 2; }
+.process-page .process-detail-card:nth-child(2) { grid-column: 2; grid-row: 2 / span 2; }
+.process-page .process-detail-card:nth-child(3) { grid-column: 1; grid-row: 3 / span 2; }
+.process-page .process-detail-card:nth-child(4) { grid-column: 2; grid-row: 4 / span 2; }
+.process-page .process-detail-card:nth-child(5) { grid-column: 1; grid-row: 5 / span 2; }
+.process-page .process-detail-card:nth-child(6) { grid-column: 2; grid-row: 6 / span 2; }
+
+/* the number now lives on the centre node */
+.process-page .process-detail-number { display: none; }
+
+/* ---- node + connector stub on every card ---- */
+.process-page .process-detail-card::after,
+.process-page .process-detail-card:nth-child(odd)::after,
+.process-page .process-detail-card:nth-child(even)::after,
+.process-page .process-detail-card:last-child::after {
+  content: counter(pstep, decimal-leading-zero);
+  position: absolute;
+  top: 36px;
+  bottom: auto;
+  width: 72px;
+  height: 44px;
+  box-sizing: border-box;
+  display: block !important;
+  line-height: 44px;
+  text-align: center;
+  color: #ffffff;
+  font: 800 15px/44px "DM Sans", Arial, sans-serif;
+  letter-spacing: 0.5px;
+  border-radius: 0;
+  clip-path: none;
+  box-shadow: none;
+  transform: none;
+  z-index: 4;
+  pointer-events: none;
+  animation: none;
+  filter: drop-shadow(0 5px 8px rgba(39, 148, 91, 0.4));
+}
+
+/* left-column cards (1,3,5): node sits to the right, on the centre pipe */
+.process-page .process-detail-card:nth-child(odd)::after {
+  right: -72px;
+  left: auto;
+  padding-left: 28px;
+  background:
+    radial-gradient(circle at calc(100% - 22px) 50%, #2fae6a 0 17px, #ffffff 17px 19.5px, #cfe9d6 19.5px 22px, transparent 22.5px),
+    repeating-linear-gradient(90deg, #2a9d62 0 6px, transparent 6px 12px) 0 50% / 28px 4px no-repeat;
+}
+
+/* right-column cards (2,4,6): node sits to the left, on the centre pipe */
+.process-page .process-detail-card:nth-child(even)::after {
+  left: -72px;
+  right: auto;
+  padding-left: 0;
+  padding-right: 0;
+  text-indent: 0;
+  background:
+    radial-gradient(circle at 22px 50%, #2fae6a 0 17px, #ffffff 17px 19.5px, #cfe9d6 19.5px 22px, transparent 22.5px),
+    repeating-linear-gradient(90deg, #2a9d62 0 6px, transparent 6px 12px) 100% 50% / 28px 4px no-repeat;
+}
+.process-page .process-detail-card:nth-child(even)::after { text-align: left; padding-left: 0; }
+.process-page .process-detail-card:nth-child(even)::after { text-indent: 0; }
+/* centre the number inside the 44px circle on the left side */
+.process-page .process-detail-card:nth-child(even)::after { width: 72px; padding-right: 28px; text-align: center; }
+
+/* ---- entrance: odd cards slide in from the left, even from the right ---- */
+@keyframes ppZigL { from { opacity: 0; transform: translateX(-48px); } to { opacity: 1; transform: none; } }
+@keyframes ppZigR { from { opacity: 0; transform: translateX(48px); }  to { opacity: 1; transform: none; } }
+.process-page .process-detail-card:nth-child(odd)  { animation: ppZigL 0.7s ease backwards; }
+.process-page .process-detail-card:nth-child(even) { animation: ppZigR 0.7s ease backwards; }
+.process-page .process-detail-card:nth-child(2) { animation-delay: 0.1s; }
+.process-page .process-detail-card:nth-child(3) { animation-delay: 0.2s; }
+.process-page .process-detail-card:nth-child(4) { animation-delay: 0.3s; }
+.process-page .process-detail-card:nth-child(5) { animation-delay: 0.4s; }
+.process-page .process-detail-card:nth-child(6) { animation-delay: 0.5s; }
+
+/* ---- phones: one column, pipe on the left, nodes on the left ---- */
+@media (max-width: 768px) {
+  .process-page .process-detail-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    row-gap: 26px;
+    padding-left: 70px;
+  }
+  .process-page .process-detail-grid::before {
+    left: 22px;
+    transform: none;
+  }
+  .process-page .process-detail-card:nth-child(n) {
+    grid-column: 1;
+    grid-row: auto;
+    animation: ppZigR 0.7s ease backwards;
+  }
+  .process-page .process-detail-card:nth-child(n)::after {
+    left: -70px;
+    right: auto;
+    width: 70px;
+    padding-left: 0;
+    padding-right: 26px;
+    text-align: center;
+    background:
+      radial-gradient(circle at 22px 50%, #2fae6a 0 17px, #ffffff 17px 19.5px, #cfe9d6 19.5px 22px, transparent 22.5px),
+      repeating-linear-gradient(90deg, #2a9d62 0 6px, transparent 6px 12px) 100% 50% / 26px 4px no-repeat;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-page .process-detail-grid::before,
+  .process-page .process-detail-card { animation: none !important; }
+}/* ===== Zig-zag pipe: start at node 01, end at node 06 ===== */
+
+/* the pipe becomes part of the grid, so its length follows the cards */
+.process-page .process-detail-grid::before {
+  position: static;
+  top: auto;
+  bottom: auto;
+  left: auto;
+  transform: none;
+  height: auto;
+  grid-column: 1 / -1;
+  grid-row: 1 / 6;          /* from card 1 down to the start of card 6 */
+  justify-self: center;
+  align-self: stretch;
+  /* node centre is 58px below a card's top: start at node 01, end at node 06 */
+  margin: 58px 0 -58px;
+}
+
+/* phones: pipe on the left, same start and end */
+@media (max-width: 768px) {
+  .process-page .process-detail-card:nth-child(1) { grid-row: 1; }
+  .process-page .process-detail-card:nth-child(2) { grid-row: 2; }
+  .process-page .process-detail-card:nth-child(3) { grid-row: 3; }
+  .process-page .process-detail-card:nth-child(4) { grid-row: 4; }
+  .process-page .process-detail-card:nth-child(5) { grid-row: 5; }
+  .process-page .process-detail-card:nth-child(6) { grid-row: 6; }
+
+  .process-page .process-detail-grid::before {
+    grid-column: 1;
+    grid-row: 1 / 6;
+    justify-self: start;
+    /* 58px to node centre + 26px row gap, pulled left onto the node column */
+    margin: 58px 0 -84px -51px;
+  }
+}/* ===== Process stages: clean numbered-card flow (reference style) ===== */
+
+.process-page .process-detail-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 40px;
+  row-gap: 40px;
+  align-items: stretch;
+  padding: 10px 0 20px;
+}
+.process-page .process-detail-grid::before { display: none !important; }
+
+/* snake order: 1 2 3 / 6 5 4 */
+.process-page .process-detail-card:nth-child(1) { grid-column: 1; grid-row: 1; }
+.process-page .process-detail-card:nth-child(2) { grid-column: 2; grid-row: 1; }
+.process-page .process-detail-card:nth-child(3) { grid-column: 3; grid-row: 1; }
+.process-page .process-detail-card:nth-child(4) { grid-column: 3; grid-row: 2; }
+.process-page .process-detail-card:nth-child(5) { grid-column: 2; grid-row: 2; }
+.process-page .process-detail-card:nth-child(6) { grid-column: 1; grid-row: 2; }
+
+/* ---------- card ---------- */
+.process-page .process-detail-card:nth-child(n) {
+  position: relative;
+  padding: 34px 26px 32px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #dfe8e2;
+  border-radius: 22px;
+  box-shadow: 0 6px 18px rgba(23, 59, 43, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.process-page .process-detail-card:nth-child(n):hover {
+  transform: translateY(-6px);
+  border-color: #b9dcc6;
+  box-shadow: 0 22px 44px rgba(23, 59, 43, 0.12);
+}
+/* remove old accent bar and the "final product" styling */
+.process-page .process-detail-card:nth-child(n)::before { display: none !important; }
+.process-page .process-detail-card:nth-child(6) {
+  background: #ffffff;
+  border-color: #dfe8e2;
+}
+.process-page .process-detail-card:nth-child(6) .process-detail-top::before { content: none !important; }
+.process-page .process-detail-card:nth-child(6) .process-detail-label { margin-top: 0; }
+
+/* ---------- numbered badge, top-left corner ---------- */
+.process-page .process-detail-top {
+  position: static;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.process-page .process-detail-number {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: auto;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #ffffff;
+  -webkit-text-stroke: 0;
+  background: #7cc02b;
+  border-radius: 50%;
+  box-shadow: 0 6px 14px rgba(124, 192, 43, 0.4);
+  opacity: 1;
+  transform: none !important;
+}
+
+/* ---------- centred icon circle ---------- */
+.process-page .process-detail-icon {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  font-size: 34px;
+  border-radius: 50%;
+  background: #eef5f1;
+  box-shadow: none;
+  transition: background 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.process-page .process-detail-icon::after { display: none !important; }
+.process-page .process-detail-card:hover .process-detail-icon {
+  background: #d6efdf;
+  transform: scale(1.08);
+}
+.process-page .process-detail-card:nth-child(1) .process-detail-icon { background: #d6efdf; }
+
+/* ---------- text ---------- */
+.process-page .process-detail-label {
+  display: block;
+  margin: 0 0 6px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  color: #27945b;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+.process-page .process-detail-card h3 {
+  margin: 0 0 10px;
+  color: #124a38;
+  font-size: 1.4rem;
+  line-height: 1.25;
+}
+.process-page .process-detail-card p {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: #55655c;
+}
+
+/* ---------- thin connector lines ---------- */
+.process-page .process-detail-card:nth-child(n)::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  top: 50%;
+  bottom: auto;
+  left: auto;
+  right: -40px;
+  width: 40px;
+  height: 3px;
+  padding: 0;
+  transform: translateY(-50%);
+  border-radius: 3px;
+  clip-path: none;
+  box-shadow: none;
+  filter: none;
+  animation: none;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(90deg, #7cc02b, #cfe6ad);
+}
+/* 4→5 and 5→6 run right to left */
+.process-page .process-detail-card:nth-child(4)::after,
+.process-page .process-detail-card:nth-child(5)::after {
+  right: auto;
+  left: -40px;
+  background: linear-gradient(270deg, #7cc02b, #cfe6ad);
+}
+/* 3→4 runs downwards */
+.process-page .process-detail-card:nth-child(3)::after {
+  top: 100%;
+  right: auto;
+  left: 50%;
+  width: 3px;
+  height: 40px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #7cc02b, #cfe6ad);
+}
+.process-page .process-detail-card:nth-child(6)::after { display: none !important; }
+
+/* ---------- phones / tablets: one column, vertical lines ---------- */
+@media (max-width: 1000px) {
+  .process-page .process-detail-grid {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+  }
+  .process-page .process-detail-card:nth-child(n) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .process-page .process-detail-card:nth-child(n)::after {
+    top: 100%;
+    right: auto;
+    left: 50%;
+    width: 3px;
+    height: 40px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, #7cc02b, #cfe6ad);
+  }
+  .process-page .process-detail-card:nth-child(6)::after { display: none !important; }
+}

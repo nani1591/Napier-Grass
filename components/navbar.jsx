@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../src/assets/green-energies-logo.webp';
+import logo from '../src/assets/sri aishwarya.jpeg';
 import './navbar.css';
 
 const links = [
