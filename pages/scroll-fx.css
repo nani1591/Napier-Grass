@@ -267,4 +267,17 @@
   .sa-wipex::before, .sa-wipex::after { animation: none !important; }
   .sa-wipex::before { display: none; }
   .sa-wipex::after { opacity: 1; }
+}/* highlighted phrases */
+mark,
+.highlight {
+  background: #ffeb00;   /* pure yellow, no green tint */
+  color: #1a1a1a;
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+/* the paragraph block: left bar + background fade */
+.callout {
+  border-left: 4px solid #ffeb00;
+  background: linear-gradient(90deg, rgba(255, 235, 0, 0.15), transparent);
 }

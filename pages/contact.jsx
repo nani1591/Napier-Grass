@@ -354,7 +354,7 @@ const Contact = () => {
                   </button>
 
                   <p className="form-disclaimer">
-                    <span>*</span> Required fields
+                    
                   </p>
                 </form>
               )}
