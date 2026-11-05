@@ -1561,4 +1561,122 @@
 .process-page .section:has(.process-detail-grid) + .spacer,
 .process-page .section:has(.process-detail-grid) + hr {
   display: none !important;
+}/* =================================
+   HIGHLIGHT THE FLOW CARD
+================================= */
+
+/* 1. Card: green glowing border + accent bar on top */
+.process-page .process-hero-visual {
+  position: relative;
+  border: 2px solid #7cc02b;
+  box-shadow:
+    0 0 0 6px rgba(124, 192, 43, 0.12),
+    0 24px 60px rgba(39, 148, 91, 0.22);
+  animation: pfGlow 3.5s ease-in-out infinite;
+}
+
+.process-page .process-hero-visual::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  height: 5px;
+  border-radius: 0 0 6px 6px;
+  background: linear-gradient(90deg, #27945b, #8fd14f, #27945b);
+  background-size: 200% 100%;
+  animation: pfBar 3s linear infinite;
+}
+
+@keyframes pfGlow {
+  0%, 100% {
+    border-color: #a7d86a;
+    box-shadow: 0 0 0 6px rgba(124, 192, 43, 0.10), 0 24px 60px rgba(39, 148, 91, 0.18);
+  }
+  50% {
+    border-color: #4fae5f;
+    box-shadow: 0 0 0 12px rgba(124, 192, 43, 0.18), 0 28px 70px rgba(39, 148, 91, 0.32);
+  }
+}
+@keyframes pfBar { to { background-position: 200% 0; } }
+
+/* 2. Small title above the heading: highlighted chip */
+.process-page .process-hero-visual .eyebrow {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: #e5f5d8;
+  border: 1px solid #bfe3a1;
+}
+
+/* 3. Steps light up one after another along the flow */
+.process-page .process-flow-step {
+  animation: pfStep 7.2s ease-in-out infinite;
+}
+.process-page .process-flow-step:nth-child(1)  { animation-delay: 0s; }
+.process-page .process-flow-step:nth-child(3)  { animation-delay: 1.2s; }
+.process-page .process-flow-step:nth-child(5)  { animation-delay: 2.4s; }
+.process-page .process-flow-step:nth-child(7)  { animation-delay: 3.6s; }
+.process-page .process-flow-step:nth-child(9)  { animation-delay: 4.8s; }
+.process-page .process-flow-step:nth-child(11) { animation-delay: 6s; }
+
+@keyframes pfStep {
+  0%, 16%, 100% {
+    background: #ffffff;
+    border-color: #dce9dd;
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  4%, 12% {
+    background: #eaf7dc;
+    border-color: #7cc02b;
+    transform: translateY(-5px);
+    box-shadow: 0 12px 26px rgba(124, 192, 43, 0.3);
+  }
+}
+
+/* 4. Arrows: pulse to the right */
+.process-page .process-flow-arrow {
+  animation: pfArrow 1.2s ease-in-out infinite;
+}
+@keyframes pfArrow {
+  0%, 100% { transform: translateX(0); opacity: 0.6; }
+  50%      { transform: translateX(6px); opacity: 1; }
+}
+
+/* 5. Digestate box: stronger highlight */
+.process-page .process-byproduct {
+  background: #f1fae8;
+  border: 1.5px dashed #6fb24a;
+  box-shadow: 0 8px 22px rgba(124, 192, 43, 0.15);
+  animation: pfByproduct 3.5s ease-in-out infinite;
+}
+@keyframes pfByproduct {
+  0%, 100% { box-shadow: 0 8px 22px rgba(124, 192, 43, 0.12); }
+  50%      { box-shadow: 0 8px 30px rgba(124, 192, 43, 0.38); }
+}
+
+/* 6. Scrollbar: slim green instead of the grey bar */
+.process-page .process-flow-diagram {
+  scrollbar-width: thin;
+  scrollbar-color: #5fb04a #e6f2dc;
+}
+.process-page .process-flow-diagram::-webkit-scrollbar { height: 8px; }
+.process-page .process-flow-diagram::-webkit-scrollbar-track {
+  background: #e6f2dc;
+  border-radius: 8px;
+}
+.process-page .process-flow-diagram::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #27945b, #8fd14f);
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-page .process-hero-visual,
+  .process-page .process-hero-visual::before,
+  .process-page .process-flow-step,
+  .process-page .process-flow-arrow,
+  .process-page .process-byproduct {
+    animation: none !important;
+  }
 }

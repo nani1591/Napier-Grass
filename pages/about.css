@@ -701,4 +701,178 @@
     opacity: 0.7;
     top: 50px;
   }
+}/* =================================
+   ABOUT HERO - HIGHLIGHT ANIMATIONS
+================================= */
+
+.about-page .about-hero {
+  isolation: isolate;
+}
+
+.about-page .about-hero-grid {
+  position: relative;
+  z-index: 2;
+}
+
+/* 1. Glowing light blobs drifting across the whole section */
+.about-page .about-hero::before {
+  content: "";
+  position: absolute;
+  inset: -15%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 25%, rgba(144, 217, 75, 0.22), transparent 28%),
+    radial-gradient(circle at 55% 85%, rgba(215, 173, 66, 0.16), transparent 26%),
+    radial-gradient(circle at 88% 30%, rgba(112, 185, 28, 0.24), transparent 30%);
+  animation: abBlobs 12s ease-in-out infinite alternate;
+}
+@keyframes abBlobs {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(40px, -28px) scale(1.12); }
+}
+
+/* the existing gold ring: slow spin + pulse */
+.about-page .about-hero::after {
+  animation: abRing 18s linear infinite;
+}
+@keyframes abRing {
+  to { transform: rotate(360deg); }
+}
+
+/* 2. Staggered entrance for the left column */
+.about-page .about-hero-grid > div:first-child > * {
+  animation: abUp 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.about-page .about-hero-grid > div:first-child > *:nth-child(1) { animation-delay: 0.05s; }
+.about-page .about-hero-grid > div:first-child > *:nth-child(2) { animation-delay: 0.2s; }
+.about-page .about-hero-grid > div:first-child > *:nth-child(3) { animation-delay: 0.4s; }
+.about-page .about-hero-grid > div:first-child > *:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes abUp {
+  from { opacity: 0; transform: translateY(34px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 3. Eyebrow dot: pulsing glow */
+.about-page .about-hero .eyebrow-dot {
+  animation: abDot 1.8s ease-out infinite;
+}
+@keyframes abDot {
+  0%   { box-shadow: 0 0 0 0 rgba(144, 217, 75, 0.7), 0 0 12px rgba(112, 185, 28, 0.6); }
+  100% { box-shadow: 0 0 0 14px rgba(144, 217, 75, 0), 0 0 12px rgba(112, 185, 28, 0.6); }
+}
+
+/* 4. Green words: shimmering gradient sweep */
+.about-page .about-hero h1 .green-text {
+  background: linear-gradient(90deg, #90d94b, #e6ff9a, #90d94b);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: abShimmer 3s linear infinite;
+}
+@keyframes abShimmer {
+  to { background-position: 200% 0; }
+}
+
+/* 5. Buttons: shine sweep */
+.about-page .about-hero .btn,
+.about-page .about-hero .outline-btn {
+  position: relative;
+  overflow: hidden;
+}
+.about-page .about-hero .btn::after,
+.about-page .about-hero .outline-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-20deg);
+  animation: abShine 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+.about-page .about-hero .outline-btn::after { animation-delay: 1.4s; }
+@keyframes abShine {
+  0%, 55% { left: -80%; }
+  100%    { left: 140%; }
+}
+
+/* 6. Right card: floats, glowing border, light sweep */
+.about-page .about-visual {
+  overflow: hidden;
+  border: 1.5px solid rgba(144, 217, 75, 0.5);
+  animation:
+    abFloat 5s ease-in-out infinite,
+    abBorder 3.5s ease-in-out infinite,
+    abCardIn 1s ease both;
+}
+@keyframes abFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+@keyframes abBorder {
+  0%, 100% { box-shadow: 0 25px 65px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(144, 217, 75, 0.0); }
+  50%      { box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28), 0 0 40px 6px rgba(144, 217, 75, 0.3); }
+}
+@keyframes abCardIn {
+  from { opacity: 0; transform: translateX(50px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* diagonal light beam crossing the card */
+.about-page .about-visual::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -60%;
+  width: 40%;
+  height: 140%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  transform: skewX(-18deg);
+  animation: abBeam 5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes abBeam {
+  0%, 45% { left: -60%; }
+  100%    { left: 130%; }
+}
+
+/* recycle icon: gentle wobble + glow */
+.about-page .about-visual-mark {
+  animation: abMark 3.2s ease-in-out infinite;
+}
+@keyframes abMark {
+  0%, 100% { transform: rotate(0deg) scale(1);     box-shadow: 0 0 0 0 rgba(165, 230, 94, 0.5); }
+  50%      { transform: rotate(-8deg) scale(1.08); box-shadow: 0 0 0 14px rgba(165, 230, 94, 0); }
+}
+
+/* bottom line dot: pulse */
+.about-page .about-visual-line i {
+  animation: abDot 1.8s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-page .about-hero::before,
+  .about-page .about-hero::after,
+  .about-page .about-hero-grid > div:first-child > *,
+  .about-page .about-hero .eyebrow-dot,
+  .about-page .about-hero .btn::after,
+  .about-page .about-hero .outline-btn::after,
+  .about-page .about-visual,
+  .about-page .about-visual::after,
+  .about-page .about-visual-mark,
+  .about-page .about-visual-line i,
+  .about-page .about-hero h1 .green-text {
+    animation: none !important;
+  }
+  .about-page .about-hero h1 .green-text {
+    -webkit-text-fill-color: currentColor;
+    background: none;
+    color: #90d94b;
+  }
 }
