@@ -661,3 +661,44 @@
     gap: 20px;
   }
 }
+/* =================================
+   JOURNEY - ANIMATED DOWN ARROWS
+================================= */
+
+.about-page .about-journey li:not(:last-child)::before,
+.about-page .about-journey li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 42px;
+  left: 18px;               /* same center line as the circles and the vertical line */
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;        /* half the arrow width, so the tip sits exactly on the line */
+  border-right: 2.5px solid var(--about-bright);
+  border-bottom: 2.5px solid var(--about-bright);
+  transform: rotate(45deg);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  animation: journey-arrow 1.8s ease-in-out infinite;
+}
+
+.about-page .about-journey li:not(:last-child)::after {
+  animation-delay: 0.9s;
+}
+
+@keyframes journey-arrow {
+  0%   { top: 42px;              opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { top: calc(100% + 8px);  opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-page .about-journey li:not(:last-child)::before,
+  .about-page .about-journey li:not(:last-child)::after {
+    animation: none;
+    opacity: 0.7;
+    top: 50px;
+  }
+}

@@ -1505,3 +1505,60 @@
   }
   .process-page .process-detail-card:nth-child(6)::after { display: none !important; }
 }
+/* =================================
+   REDUCE GAP: step cards -> CTA panel
+================================= */
+
+/* section that contains the step cards */
+.process-page .section:has(.process-detail-grid) {
+  padding-bottom: 30px;
+}
+
+.process-page .process-detail-grid {
+  padding-bottom: 0;
+}
+
+/* section that contains the dark "Ready to explore?" panel */
+.process-page .section:has(.impact-panel) {
+  padding-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .process-page .section:has(.process-detail-grid) {
+    padding-bottom: 20px;
+  }
+
+  .process-page .section:has(.impact-panel) {
+    padding-top: 20px;
+  }
+}/* =================================
+   FORCE SMALL GAP: cards -> CTA panel
+================================= */
+
+/* section holding the step cards */
+.process-page .section:has(.process-detail-grid) {
+  padding-bottom: 20px !important;
+  margin-bottom: 0 !important;
+}
+
+.process-page .process-detail-grid {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* section holding the dark panel */
+.process-page .section:has(.impact-panel),
+.process-page .impact-panel {
+  margin-top: 0 !important;
+}
+
+.process-page .section:has(.impact-panel) {
+  padding-top: 20px !important;
+}
+
+/* any spacer element sitting between the two */
+.process-page .section:has(.process-detail-grid) + *:not(.section),
+.process-page .section:has(.process-detail-grid) + .spacer,
+.process-page .section:has(.process-detail-grid) + hr {
+  display: none !important;
+}

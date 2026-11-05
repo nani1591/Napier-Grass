@@ -1388,4 +1388,75 @@ main section.hero,
 
 @media (prefers-reduced-motion: reduce) {
   .cbg-label { opacity: 1; animation: none; }
+}/* =================================
+   REMOVE GAPS - HOME PAGE
+================================= */
+
+/* 1. Hero: smaller bottom padding (was 84px) */
+.hero {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 30px !important;
+}
+
+/* 2. Hero text: tighter stack from badge down to buttons */
+.hero .hero-badge {
+  margin-bottom: 16px !important;
+}
+
+.hero .hero-title {
+  margin: 0 0 12px !important;
+}
+
+.hero .hero-subtitle {
+  margin: 0 0 10px !important;
+}
+
+.hero .hero-description {
+  margin: 0 0 18px !important;
+}
+
+.hero .hero-actions {
+  margin-bottom: 18px !important;
+}
+
+/* 3. Hero visual: no extra padding or margin under the animation */
+.hero-visual {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+}
+
+/* 4. Sections below the hero: small, even spacing */
+.home-page .intro-section,
+.home-page .solutions-section,
+.home-page .process-section,
+.home-page .gallery-section {
+  padding-top: 25px !important;
+  padding-bottom: 25px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Tablet and phone */
+@media (max-width: 900px) {
+  .hero {
+    padding-bottom: 25px !important;
+  }
+
+  .hero-grid {
+    gap: 20px !important;
+  }
+
+  .hero-visual {
+    margin-top: 0 !important;
+  }
+
+  .home-page .intro-section,
+  .home-page .solutions-section,
+  .home-page .process-section,
+  .home-page .gallery-section {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
 }

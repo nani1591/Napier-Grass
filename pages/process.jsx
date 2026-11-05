@@ -187,6 +187,7 @@ export default function Process({ setCurrentPage }) {
               <span className="eyebrow">
                 THE PROCESS
               </span>
+              <span class="footer-underline"></span>
 
               <h2>
                 Six stages, one connected system

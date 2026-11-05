@@ -635,3 +635,61 @@
     max-width: 100%;
   }
 }
+/* =================================
+   REDUCE GAPS - PRODUCTS PAGE
+================================= */
+
+/* Hero: let it shrink to its content instead of a fixed 520px */
+.np-showcase-hero {
+  min-height: 0;
+  padding: 40px 7% 30px;
+}
+
+/* Tighter spacing inside the hero */
+.np-showcase-hero h1 {
+  margin: 16px 0 12px;
+}
+
+.np-showcase-meta {
+  margin-top: 20px;
+}
+
+/* Gallery: smaller gap under the hero and above the CTA */
+.np-showcase-gallery {
+  padding: 25px 7% 50px;
+}
+
+.np-gallery-heading {
+  margin-bottom: 25px;
+}
+
+/* Bottom banner: smaller gap before the footer */
+.np-showcase-cta {
+  margin-bottom: 40px;
+}
+
+/* Tablet */
+@media (max-width: 950px) {
+  .np-showcase-hero {
+    padding: 35px 5% 28px;
+  }
+
+  .np-showcase-gallery {
+    padding: 22px 5% 45px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .np-showcase-hero {
+    padding: 30px 6% 24px;
+  }
+
+  .np-showcase-gallery {
+    padding: 20px 6% 40px;
+  }
+
+  .np-showcase-cta {
+    margin-bottom: 30px;
+  }
+}

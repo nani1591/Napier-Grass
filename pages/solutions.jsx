@@ -180,11 +180,15 @@ export default function Solutions({ setCurrentPage }) {
       {/* INTRODUCTION TO NAPIER GRASS */}
       <section className="solutions-intro">
         <div className="container solutions-intro-grid">
+            
           <div>
-            <span className="solutions-section-kicker">
-              UNDERSTANDING NAPIER GRASS
-            </span>
 
+            <span className="solutions-section-kicker">
+              
+              UNDERSTANDING NAPIER GRASS
+              
+            </span>
+<span class="footer-underline"></span>
             <h2>
               What is Napier Grass?
               <span> A renewable biomass resource.</span>
@@ -283,7 +287,7 @@ export default function Solutions({ setCurrentPage }) {
               <span className="solutions-section-kicker">
                 HOW THE PROJECT STARTS
               </span>
-
+            <span class="footer-underline"></span>
               <h2>
                 Your journey from grass to gas
               </h2>
